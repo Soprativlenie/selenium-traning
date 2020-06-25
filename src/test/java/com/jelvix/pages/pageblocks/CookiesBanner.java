@@ -13,7 +13,7 @@ public class CookiesBanner extends Page {
         driver.findElement(By.id("cn-accept-cookie")).click();
     }
 
-    public boolean cookiesBannerIsDisplayed() {
+    public boolean isDisplayed() {
         return driver.findElement(By.id("cookie-notice")).isDisplayed();
     }
 
