@@ -16,7 +16,7 @@ public class CovidBanner extends Page {
         return wait.until(visibilityOfElementLocated(By.xpath("//div[@class='info-banner']"))).isDisplayed();
     }
 
-    public void closeCovidBanner() {
+    public void close() {
         driver.findElement(By.xpath("//button[@class='close js-close-covid']")).click();
     }
 }

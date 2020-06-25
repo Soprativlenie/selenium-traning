@@ -1,5 +1,6 @@
 package com.jelvix.tests;
 
+import com.jelvix.pages.Page_Company;
 import com.jelvix.pages.Page_Main;
 import com.jelvix.pages.pageblocks.*;
 import org.junit.After;
@@ -15,14 +16,15 @@ public class TestBase {
     protected CovidBanner covidBanner;
     protected Footer footer;
     protected NavigationTabs navigationTabs;
-    protected Page_Main mainPage;
+    protected Page_Main pageMain;
+    protected Page_Company pageCompany;
     protected static WebDriver driver;
     protected static WebDriverWait wait;
     private ChromeOptions options;
 
     @Before
     public void start() {
-        System.setProperty("webdriver.chrome.driver", "/home/user/Downloads/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "C:/Users/38095/Downloads/chromedriver.exe");
         options = new ChromeOptions();
 //        options.addArguments("--headless");
         driver = new ChromeDriver(options);
@@ -32,7 +34,8 @@ public class TestBase {
         covidBanner = new CovidBanner(driver);
         footer = new Footer(driver);
         navigationTabs = new NavigationTabs(driver);
-        mainPage = new Page_Main(driver);
+        pageMain = new Page_Main(driver);
+        pageCompany = new Page_Company(driver);
     }
 
     @After
