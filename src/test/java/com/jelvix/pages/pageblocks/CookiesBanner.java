@@ -2,22 +2,40 @@ package com.jelvix.pages.pageblocks;
 
 import com.jelvix.pages.Page;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOfElementLocated;
 
 public class CookiesBanner extends Page {
     public CookiesBanner(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
+
+    @FindBy(id = "cn-accept-cookie")
+    public WebElement acceptBtn;
+
+    @FindBy(xpath = "//a[@href='/cookie-policy']")
+    public WebElement cookiesLink;
+
+    @FindBy(id = "cookie-notice")
+    public WebElement cookiesBanner;
 
     public void acceptCookiesBanner() {
-        driver.findElement(By.id("cn-accept-cookie")).click();
+        acceptBtn.click();
     }
 
-    public boolean isDisplayed() {
-        return driver.findElement(By.id("cookie-notice")).isDisplayed();
+    public boolean isCookiesBannerPresent() {
+        return cookiesBanner.getSize().height < 0;
     }
 
-    public void clickCookiesPolicyLabel() {
-        driver.findElement(By.xpath("//a[@href='/cookie-policy']")).click();
+    public void openCookiePolicy() {
+        cookiesLink.click();
     }
+
+
 }

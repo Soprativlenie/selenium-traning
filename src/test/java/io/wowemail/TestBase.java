@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,12 +15,16 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElem
 public class TestBase {
     private static WebDriver driver;
     private static WebDriverWait wait;
-
+    private static JavascriptExecutor js;
+//  C:/38095/Downloads/chromedriver.exe
     @Before
     public void init() {
         System.setProperty("webdriver.chrome.driver", "/home/user/Downloads/chromedriver");
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 10);
+        js = (JavascriptExecutor) driver;
+        driver.manage().window().maximize();
+
     }
 
     @Test
@@ -58,7 +63,7 @@ public class TestBase {
 
     @Test
     public void sendTheContactFromJelvix(){
-        driver.get("http://31.202.123.239:3043/");
+        driver.get("// http://31.202.123.239:3043/");
         wait.until(visibilityOfElementLocated(By.xpath("//div[@class='info-banner']")));
         driver.findElement(By.xpath("//button[@class='close js-close-covid']")).click();
         driver.findElement(By.xpath("//input[@type='text']")).sendKeys("Igor Test");

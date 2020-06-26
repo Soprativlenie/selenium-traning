@@ -10,6 +10,6 @@ public class Page_Company extends Page {
     }
 
     public String getUrl() {
-        return "http://31.202.123.239:3043/company";
+        return "https://jelvix.com/company";
     }
 }

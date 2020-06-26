@@ -5,8 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
+
 public class Page_Main extends Page {
-    private String url = "";
 
     public Page_Main(WebDriver driver) {
         super(driver);
@@ -16,16 +18,30 @@ public class Page_Main extends Page {
     @FindBy(xpath = "//span[contains(text(),'More About Us')]")
     public WebElement moreAboutUsBtn;
 
-    @FindBy(css = ".btn-flip")
+    @FindBy(xpath = "//div[@class='active-state']")
+    public WebElement bla;
+
+    @FindBy(xpath = "//div[@class='dots-block']//span[contains(text(),'See All Case Studies')]")
     public WebElement seeAllCaseStudiesBtn;
 
 
     public Page_Main open() {
-        driver.get("http://31.202.123.239:3043/");
+        driver.get("https://jelvix.com/");
         return this;
     }
 
     public String getUrl() {
-        return "";
+        return "https://jelvix.com/";
+    }
+
+    public void clickSeeAllCaseStudiesBtn() {  // The method doesn't work
+//        actions.moveToElement(seeAllCaseStudiesBtn);
+//        js.executeScript("window.scrollBy(0,3200)");
+//        seeAllCaseStudiesBtn.click();
+//        actions.moveToElement(seeAllCaseStudiesBtn).perform();
+//        wait.until(visibilityOf(bla)).click();
+//        actions.moveToElement(seeAllCaseStudiesBtn).perform();
+//        actions.click();
+//        seeAllCaseStudiesBtn.click();
     }
 }
