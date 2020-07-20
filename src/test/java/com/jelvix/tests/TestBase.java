@@ -1,5 +1,6 @@
 package com.jelvix.tests;
 
+import com.jelvix.httpclient.RequestSender;
 import com.jelvix.pages.*;
 import com.jelvix.pages.pageblocks.*;
 import org.junit.After;
@@ -29,6 +30,8 @@ public class TestBase {
     protected static WebDriver driver;
     protected static WebDriverWait wait;
     private ChromeOptions options;
+    protected RequestSender requestSender;
+
 
     @Before
     public void start() {
@@ -52,6 +55,7 @@ public class TestBase {
         pageCaseStudies = new Page_CaseStudies(driver);
         pageContactUs = new Page_ContactUs(driver);
         pageBlog = new Page_Blog(driver);
+        requestSender = new RequestSender();
 
 //        setAllCookies();
 //        getAllCookies();

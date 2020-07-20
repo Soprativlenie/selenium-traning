@@ -39,7 +39,7 @@ public class Page_ContactUs extends Page {
         return this;
     }
 
-    public void fillAllInputWithValidData(){
+    public void fillAllInputWithValidData() {
         fullNameInput.sendKeys("Igor Vdovichenko Test");
         companyInput.sendKeys("Jelvix Test");
         workEmailInput.sendKeys("igor.vdovichenko@jelvix.com");

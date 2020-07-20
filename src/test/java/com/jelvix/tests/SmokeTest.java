@@ -3,6 +3,7 @@ package com.jelvix.tests;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.openqa.selenium.WebElement;
 
 public class SmokeTest extends TestBase {
 
@@ -121,7 +122,7 @@ public class SmokeTest extends TestBase {
     }
 
     @Test
-    public void should_showArticleWithTheMobileTag_WhenUserClicksOnTheMobileFilterBtn(){
+    public void should_showArticleWithTheMobileTag_WhenUserClicksOnTheMobileFilterBtn() {
         pageBlog.open();
         pageBlog.hoverOnTheCategoryBar();
         pageBlog.mobileFilterBtn.click();
@@ -130,7 +131,7 @@ public class SmokeTest extends TestBase {
     }
 
     @Test
-    public void should_showArticleWithTheDataScienceTag_WhenUserClicksOnTheDataScienceFilterBtn(){
+    public void should_showArticleWithTheDataScienceTag_WhenUserClicksOnTheDataScienceFilterBtn() {
         pageBlog.open();
         pageBlog.hoverOnTheCategoryBar();
         pageBlog.dataScienceFilterBtn.click();
@@ -139,7 +140,7 @@ public class SmokeTest extends TestBase {
     }
 
     @Test
-    public void should_showArticleWithTheBlockchainTag_WhenUserClicksOnTheBlockchainFilterBtn(){
+    public void should_showArticleWithTheBlockchainTag_WhenUserClicksOnTheBlockchainFilterBtn() {
         pageBlog.open();
         pageBlog.hoverOnTheCategoryBar();
         pageBlog.blockchainFilterBtn.click();
@@ -148,13 +149,28 @@ public class SmokeTest extends TestBase {
     }
 
     @Test
-    public void should_showArticleWithTheARVRTag_WhenUserClicksOnTheARVRFilterBtn(){
+    public void should_showArticleWithTheARVRTag_WhenUserClicksOnTheARVRFilterBtn() {
         pageBlog.open();
         pageBlog.hoverOnTheCategoryBar();
         pageBlog.arVrFilterBtn.click();
         pageBlog.waitUntilLoaderIsDisappearing();
         Assert.assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("AR/VR"));
 
+    }
+
+    @Test
+    public void should_validTheAllImagesAreValid_OnTheMainPage() {
+        pageMain.open();
+        boolean result = false;
+        for (WebElement image : pageMain.getAllImagesLink()) {
+            if (!requestSender.isImagesLinkValid(image)) {
+                result = false;
+                break;
+            } else {
+                result = true;
+            }
+        }
+        Assert.assertTrue(result);
     }
 
 }

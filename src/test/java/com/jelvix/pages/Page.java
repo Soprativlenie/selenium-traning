@@ -1,9 +1,13 @@
 package com.jelvix.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
 
 public class Page {
     public static WebDriver driver;
@@ -22,6 +26,10 @@ public class Page {
 
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
+    }
+
+    public List<WebElement> getAllImagesLink() {
+        return driver.findElements(By.tagName("img"));
     }
 
 }
