@@ -5,9 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
-
 public class Page_Main extends Page {
 
     public Page_Main(WebDriver driver) {
