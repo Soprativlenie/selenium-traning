@@ -3,9 +3,73 @@ package com.jelvix.tests;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.openqa.selenium.WebElement;
+
+import java.io.IOException;
 
 public class SmokeTest extends TestBase {
+
+    @Test
+    public void should_verifyThatAllImagesAreNotBroken_OnTheBlogPage() throws IOException {
+        pageBlog.open();
+        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageBlog.getAllImagesWithSrcAttr());
+        Assert.assertTrue(isHttpCode200);
+    }
+
+    @Test
+    public void should_verifyThatAllImagesAreNotBroken_OnTheCaseStudiesPage() throws IOException {
+        pageCaseStudies.open();
+        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageCaseStudies.getAllImagesWithSrcAttr());
+        Assert.assertTrue(isHttpCode200);
+    }
+
+    @Test
+    public void should_verifyThatAllImagesAreNotBroken_OnTheCompanyPage() throws IOException {
+        pageCompany.open();
+        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageCompany.getAllImagesWithSrcAttr());
+        Assert.assertTrue(isHttpCode200);
+    }
+
+    @Test
+    public void should_verifyThatAllImagesAreNotBroken_OnTheContactUsPage() throws IOException {
+        pageContactUs.open();
+        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageContactUs.getAllImagesWithSrcAttr());
+        Assert.assertTrue(isHttpCode200);
+    }
+
+    @Test
+    public void should_verifyThatAllImagesAreNotBroken_OnTheExpertisePage() throws IOException {
+        pageExpertise.open();
+        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageExpertise.getAllImagesWithSrcAttr());
+        Assert.assertTrue(isHttpCode200);
+    }
+
+    @Test
+    public void should_verifyThatAllImagesAreNotBroken_OnTheIndustriesPage() throws IOException {
+        pageIndustries.open();
+        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageIndustries.getAllImagesWithSrcAttr());
+        Assert.assertTrue(isHttpCode200);
+    }
+
+    @Test
+    public void should_verifyThatAllImagesAreNotBroken_OnTheMainPage() throws IOException {
+        pageMain.open();
+        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageMain.getAllImagesWithSrcAttr());
+        Assert.assertTrue(isHttpCode200);
+    }
+
+    @Test
+    public void should_verifyThatAllImagesAreNotBroken_OnTheServicesPage() throws IOException {
+        pageServices.open();
+        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageServices.getAllImagesWithSrcAttr());
+        Assert.assertTrue(isHttpCode200);
+    }
+
+    @Test
+    public void should_verifyThatAllImagesAreNotBroken_OnTheTechnologiesPage() throws IOException {
+        pageTechnologies.open();
+        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageTechnologies.getAllImagesWithSrcAttr());
+        Assert.assertTrue(isHttpCode200);
+    }
 
     @Test
     public void should_showCovidBanner_When_TheUserTheFirstTimeOnWebSite() {
@@ -67,7 +131,6 @@ public class SmokeTest extends TestBase {
     public void should_sendContactUsForm() {
         pageContactUs.open();
         pageContactUs.fillAllInputWithValidData();
-        System.out.println(getAllCookies());
     }
 
     @Test
@@ -156,21 +219,6 @@ public class SmokeTest extends TestBase {
         pageBlog.waitUntilLoaderIsDisappearing();
         Assert.assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("AR/VR"));
 
-    }
-
-    @Test
-    public void should_validTheAllImagesAreValid_OnTheMainPage() {
-        pageMain.open();
-        boolean result = false;
-        for (WebElement image : pageMain.getAllImagesLink()) {
-            if (!requestSender.isImagesLinkValid(image)) {
-                result = false;
-                break;
-            } else {
-                result = true;
-            }
-        }
-        Assert.assertTrue(result);
     }
 
 }
