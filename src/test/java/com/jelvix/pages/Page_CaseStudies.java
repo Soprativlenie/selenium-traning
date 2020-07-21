@@ -14,12 +14,17 @@ public class Page_CaseStudies extends Page {
     @FindBy(xpath = "//h1[1]")
     public WebElement titleOfThePage;
 
-    public String getUrl() {
-        return "https://jelvix.com/case-studies";
+    public Page_CaseStudies open() {
+        driver.get(Page.getHost()+ PagePaths.CASE_STUDIES.getLink());
+        return this;
     }
 
     public void waitUntilThePageIsLoaded() {
         titleOfThePage.isDisplayed();
+    }
+
+    public String getUrl() {
+        return PagePaths.CASE_STUDIES.getLink();
     }
 
 }

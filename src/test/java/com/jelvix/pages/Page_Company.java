@@ -9,7 +9,12 @@ public class Page_Company extends Page {
         super(driver);
     }
 
+    public Page_Company open() {
+        driver.get(Page.getHost() + PagePaths.COMPANY.getLink());
+        return this;
+    }
+
     public String getUrl() {
-        return "https://jelvix.com/company";
+        return Page.getHost() + PagePaths.COMPANY.getLink();
     }
 }

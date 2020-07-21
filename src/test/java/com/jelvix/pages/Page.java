@@ -10,10 +10,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 public class Page {
-    public static WebDriver driver;
-    public static WebDriverWait wait;
-    public static JavascriptExecutor jsExecutor;
-    public static Actions actions;
+    protected static WebDriver driver;
+    protected static WebDriverWait wait;
+    protected static JavascriptExecutor jsExecutor;
+    protected static Actions actions;
+    private static String host;
 
 
     public Page(WebDriver driver) {
@@ -24,12 +25,25 @@ public class Page {
         actions = new Actions(driver);
     }
 
+    public Page(WebDriver driver, String host) {
+        System.setProperty("webdriver.chrome.driver", "home/user/Downloads/chromedriver");
+        Page.driver = driver;
+        wait = new WebDriverWait(driver, 10);
+        jsExecutor = (JavascriptExecutor) driver;
+        actions = new Actions(driver);
+        Page.host = host;
+
+    }
+
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }
 
-    public List<WebElement> getAllImagesLink() {
+    public List<WebElement> getAllImagesWithSrcAttr() {
         return driver.findElements(By.tagName("img"));
     }
 
+    public static String getHost() {
+        return host;
+    }
 }

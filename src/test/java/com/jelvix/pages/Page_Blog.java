@@ -68,8 +68,8 @@ public class Page_Blog extends Page {
     @FindBy(xpath = "//div[@class='blog-col ']//div[@class='hashtags']")
     public List<WebElement> hashtags;
 
-    @FindBy(xpath = "//div[@class='blog-col '][3]")
-    public WebElement thirdArticle;
+    @FindBy(xpath = "//div[@class='blog-col '][1]")
+    public WebElement firstArticle;
 
     @FindBy(xpath = "//div[@class='blog-col '][last()]")
     public WebElement lastArticle;
@@ -82,7 +82,8 @@ public class Page_Blog extends Page {
     }
 
     public Page_Blog open() {
-        driver.get("https://jelvix.com/blog");
+        driver.get(Page.getHost() + PagePaths.BLOG.getLink());
+//        actions.moveToElement(firstArticle).perform();
         return this;
     }
 

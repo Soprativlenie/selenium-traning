@@ -23,13 +23,10 @@ public class Page_Main extends Page {
 
 
     public Page_Main open() {
-        driver.get("https://jelvix.com/");
+        driver.get(Page.getHost()+ PagePaths.MAIN.getLink());
         return this;
     }
 
-    public String getUrl() {
-        return "https://jelvix.com/";
-    }
 
     public void clickSeeAllCaseStudiesBtn() {  // The method doesn't work
 //        actions.moveToElement(seeAllCaseStudiesBtn);

@@ -35,7 +35,7 @@ public class Page_ContactUs extends Page {
     public WebElement submitFormBtn;
 
     public Page_ContactUs open() {
-        driver.get("https://jelvix.com/contact-us");
+        driver.get(Page.getHost()+ PagePaths.CONTACT_US.getLink());
         return this;
     }
 
