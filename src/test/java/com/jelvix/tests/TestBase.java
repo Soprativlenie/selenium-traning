@@ -3,6 +3,8 @@ package com.jelvix.tests;
 import com.jelvix.httpclient.RequestSender;
 import com.jelvix.pages.*;
 import com.jelvix.pages.pageblocks.*;
+import com.jelvix.useremailbox.Page_Mailinator;
+import com.jelvix.useremailbox.Page_MailinatorEmailBox;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
@@ -32,6 +34,9 @@ public class TestBase {
     protected Page_Main pageMain;
     protected Page_Services pageServices;
     protected Page_Technologies pageTechnologies;
+    protected Page_Mailinator pageMailinator;
+    protected Page_MailinatorEmailBox pageMailinatorEmailBox;
+    protected Page_SingleBlog pageSingleBlog;
 
 
     protected static WebDriver driver;
@@ -56,7 +61,7 @@ public class TestBase {
         covidBanner = new CovidBanner(driver);
         footer = new Footer(driver);
         navigationTabs = new NavigationTabs(driver);
-        page = new Page(driver,PRODUCTION_HOST);
+        page = new Page(driver, PRODUCTION_HOST);
         pageMain = new Page_Main(driver);
         pageCompany = new Page_Company(driver);
         pageCaseStudies = new Page_CaseStudies(driver);
@@ -67,8 +72,10 @@ public class TestBase {
         pageServices = new Page_Services(driver);
         pageTechnologies = new Page_Technologies(driver);
         requestSender = new RequestSender();
+        pageMailinator = new Page_Mailinator(driver);
+        pageMailinatorEmailBox = new Page_MailinatorEmailBox(driver);
+        pageSingleBlog = new Page_SingleBlog(driver);
     }
-
 
 
 //    @After
