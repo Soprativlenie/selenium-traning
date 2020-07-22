@@ -3,8 +3,10 @@ package com.jelvix.tests;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.openqa.selenium.Cookie;
 
 import java.io.IOException;
+import java.util.Date;
 
 public class SmokeTest extends TestBase {
 
@@ -218,7 +220,64 @@ public class SmokeTest extends TestBase {
         pageBlog.arVrFilterBtn.click();
         pageBlog.waitUntilLoaderIsDisappearing();
         Assert.assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("AR/VR"));
+    }
 
+    @Test
+    public void should_showSuccessMessage_WhenUserSubscribingTheNewsletter() {
+        String email = "igorvd@mailinator.com";
+        pageBlog.subscribeBlogByEmail(email);
+        Assert.assertTrue(pageBlog.subscriptionSuccessMessage.isDisplayed());
+    }
+
+    @Test
+    public void should_verifyThatWelocmeLetterEmailed_WhenUserSubscribeTheNewsLetter() {
+        String email = "jelvixsub@mailinator.com";
+        pageBlog.subscribeBlogByEmail(email);
+        pageMailinator.goToEmailBox(email);
+        Assert.assertTrue(pageMailinatorEmailBox.isWelcomeLetterIsEmailed());
+    }
+
+    @Test
+    public void should_verifyThatSubscriptionPopupAppears_WhenUserIsOnTheSingleBlogPageForTheFirstTime() {
+        pageBlog.openTheSingleBlogPage();
+        pageSingleBlog.hoverOverTheLastSectionOfTheArticle();
+        Assert.assertTrue(pageSingleBlog.isSubscriptionPopupDisplaying());
+    }
+
+    @Test
+    public void should_verifyThatSocialBlockIsDisplay_WhenUserIsOnTheSingleBlogPage() {
+        pageBlog.openTheSingleBlogPage();
+        pageSingleBlog.closeSubscriptionPopup();
+        Assert.assertTrue(pageSingleBlog.isSocialBlockDisplaying());
+    }
+
+    @Test
+    public void should_verifyThatStructureBlockIsDisplaying_WhenUserIsOnTheSingleBlogPage() {
+        pageBlog.openTheSingleBlogPage();
+        pageSingleBlog.closeSubscriptionPopup();
+        Assert.assertTrue(pageSingleBlog.isStructureBlockDisplaying());
+    }
+
+    @Test
+    public void should_verifyThatContactUsBottomBlockIsDisplaying_WhenUserIsOnTheSingleBlogPage() {
+        pageBlog.openTheSingleBlogPage();
+        pageSingleBlog.closeSubscriptionPopup();
+        Assert.assertTrue(pageSingleBlog.isContactUsBottomBlockDisplaying());
+    }
+
+    @Test
+    public void should_verifyThatReadNextBlockIsDisplaying() {
+        pageBlog.openTheSingleBlogPage();
+        ;
+        pageSingleBlog.closeSubscriptionPopup();
+        pageSingleBlog.hoverOverTheLastSectionOfTheArticle();
+        Assert.assertTrue(pageSingleBlog.isReadNextBlockDisplaying());
+    }
+
+    @Test
+    public void shouldCloseSubscribePopUp() throws InterruptedException {
+        pageBlog.openTheSingleBlogPage();
+        pageSingleBlog.hoverOverTheLastSectionOfTheArticle();
     }
 
 }
