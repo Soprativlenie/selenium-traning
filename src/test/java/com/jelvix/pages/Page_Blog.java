@@ -21,10 +21,10 @@ public class Page_Blog extends Page {
     @FindBy(id = "searchsubmit")
     public WebElement searchBtn;
 
-    @FindBy(id = "es_subscription_form_1594977925")
+    @FindBy(xpath = "//input[@placeholder='Enter your email...']")
     public WebElement subscriptionField;
 
-    @FindBy(id = "es_subscription_form_submit_1594977925")
+    @FindBy(xpath = "//div[@class='emaillist']//input[@type='submit']")
     public WebElement subscriptionBtn;
 
     @FindBy(xpath = "//div[@class='category-filter']/button")
@@ -77,13 +77,19 @@ public class Page_Blog extends Page {
     @FindBy(xpath = "//div[@class ='loader blue']")
     public WebElement loader;
 
+    @FindBy(xpath = "//span[@class='es_subscription_message success']")
+    public WebElement subscriptionSuccessMessage;
+
+    @FindBy(xpath = "//span[@id='spinner-image']")
+    public WebElement subscriptionLoader;
+
     public int getNumberOfArticleOnThePage() {
         return articles.size();
     }
 
     public Page_Blog open() {
         driver.get(Page.getHost() + PagePaths.BLOG.getLink());
-//        actions.moveToElement(firstArticle).perform();
+        actions.moveToElement(firstArticle).perform();
         return this;
     }
 
@@ -117,6 +123,16 @@ public class Page_Blog extends Page {
 
     public void setContentAttributeLoad() {
         jsExecutor.executeScript("document.getElementById('main').setAttribute('data-loaded', 'true')");
+    }
+
+    public void subscribeBlogByEmail(String email) {
+        open().subscriptionField.sendKeys(email);
+        subscriptionBtn.submit();
+        wait.until(ExpectedConditions.visibilityOf(subscriptionSuccessMessage));
+    }
+
+    public void openTheSingleBlogPage(){
+        open().firstArticle.click();
     }
 
 }
