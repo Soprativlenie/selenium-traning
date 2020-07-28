@@ -19,6 +19,11 @@ public class TestBase {
     private final static String STAGING_EXTERNAL_HOST = "http://31.202.123.239:3043/";
     private final static String STAGING_INTERNAL_HOST = "http://192.168.88.173/";
 
+    private static WebDriver driver;
+    private static WebDriverWait wait;
+    private ChromeOptions options;
+    protected RequestSender requestSender;
+
     protected ContactUsForm contactUsForm;
     protected CookiesBanner cookiesBanner;
     protected CovidBanner covidBanner;
@@ -37,13 +42,6 @@ public class TestBase {
     protected Page_Mailinator pageMailinator;
     protected Page_MailinatorEmailBox pageMailinatorEmailBox;
     protected Page_SingleBlog pageSingleBlog;
-
-
-    protected static WebDriver driver;
-    protected static WebDriverWait wait;
-    private ChromeOptions options;
-    protected RequestSender requestSender;
-
 
     @Before
     public void start() {

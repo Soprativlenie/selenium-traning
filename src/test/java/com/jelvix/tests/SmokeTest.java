@@ -3,10 +3,8 @@ package com.jelvix.tests;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.openqa.selenium.Cookie;
 
 import java.io.IOException;
-import java.util.Date;
 
 public class SmokeTest extends TestBase {
 
@@ -84,7 +82,7 @@ public class SmokeTest extends TestBase {
         pageMain.open();
         covidBanner.close();
         navigationTabs.industriesBtn.click();
-        Assert.assertTrue(!covidBanner.isDisplayed());
+        Assert.assertFalse(covidBanner.isDisplayed());
     }
 
     @Test
@@ -118,7 +116,7 @@ public class SmokeTest extends TestBase {
         Assert.assertEquals(pageCompany.getUrl(), page.getCurrentUrl());
     }
 
-    @Ignore // The test should be fixed
+    @Ignore // TODO: Fix the method
     public void should_redirectToTheCaseStudiesPage_WhenUserClicksOnButton() {
         pageMain.open();
         covidBanner.close();
@@ -129,7 +127,7 @@ public class SmokeTest extends TestBase {
         Assert.assertTrue(pageCaseStudies.titleOfThePage.isDisplayed());
     }
 
-    @Ignore //doesn't work due to recaptcha
+    @Ignore //TODO: Wait until the reCaptcha will be disabled
     public void should_sendContactUsForm() {
         pageContactUs.open();
         pageContactUs.fillAllInputWithValidData();
@@ -247,35 +245,36 @@ public class SmokeTest extends TestBase {
     @Test
     public void should_verifyThatSocialBlockIsDisplay_WhenUserIsOnTheSingleBlogPage() {
         pageBlog.openTheSingleBlogPage();
-        pageSingleBlog.closeSubscriptionPopup();
+        pageBlog.launchThePageWithAcceptedCookies();
         Assert.assertTrue(pageSingleBlog.isSocialBlockDisplaying());
     }
 
     @Test
     public void should_verifyThatStructureBlockIsDisplaying_WhenUserIsOnTheSingleBlogPage() {
         pageBlog.openTheSingleBlogPage();
-        pageSingleBlog.closeSubscriptionPopup();
+        pageBlog.launchThePageWithAcceptedCookies();
         Assert.assertTrue(pageSingleBlog.isStructureBlockDisplaying());
     }
 
     @Test
     public void should_verifyThatContactUsBottomBlockIsDisplaying_WhenUserIsOnTheSingleBlogPage() {
         pageBlog.openTheSingleBlogPage();
-        pageSingleBlog.closeSubscriptionPopup();
+        pageBlog.launchThePageWithAcceptedCookies();
         Assert.assertTrue(pageSingleBlog.isContactUsBottomBlockDisplaying());
     }
 
     @Test
     public void should_verifyThatReadNextBlockIsDisplaying() {
         pageBlog.openTheSingleBlogPage();
-        ;
-        pageSingleBlog.closeSubscriptionPopup();
+        pageBlog.launchThePageWithAcceptedCookies();
         pageSingleBlog.hoverOverTheLastSectionOfTheArticle();
         Assert.assertTrue(pageSingleBlog.isReadNextBlockDisplaying());
     }
 
     @Test
-    public void shouldCloseSubscribePopUp() throws InterruptedException {
+    public void shouldCloseSubscribePopUp() {
+        pageMain.open();
+        pageMain.launchThePageWithAcceptedCookies();
         pageBlog.openTheSingleBlogPage();
         pageSingleBlog.hoverOverTheLastSectionOfTheArticle();
     }
