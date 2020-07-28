@@ -23,7 +23,7 @@ public class Page_Main extends Page {
 
 
     public Page_Main open() {
-        driver.get(Page.getHost()+ PagePaths.MAIN.getLink());
+        driver.get(Page.getHost() + PagePaths.MAIN.getLink());
         return this;
     }
 

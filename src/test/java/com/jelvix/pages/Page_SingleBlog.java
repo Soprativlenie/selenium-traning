@@ -1,6 +1,5 @@
 package com.jelvix.pages;/* Created by user on 22.07.20 */
 
-import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -86,15 +85,11 @@ public class Page_SingleBlog extends Page {
         jsExecutor.executeScript("window.scrollBy(0,-200)");
     }
 
-    public void closeSubscriptionPopup() {
-        driver.manage().addCookie(new Cookie("close_subscribe", "true"));
-    }
-
     public boolean isContactUsBottomBlockDisplaying() {
         return contactUsButtonBlock.isDisplayed();
     }
-    public boolean isReadNextBlockDisplaying(){
+
+    public boolean isReadNextBlockDisplaying() {
         return wait.until(ExpectedConditions.visibilityOf(readNextBlock)).isDisplayed();
     }
-
 }

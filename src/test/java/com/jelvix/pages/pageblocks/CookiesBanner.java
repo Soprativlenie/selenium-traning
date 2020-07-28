@@ -1,14 +1,11 @@
 package com.jelvix.pages.pageblocks;
 
 import com.jelvix.pages.Page;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOfElementLocated;
 
 public class CookiesBanner extends Page {
     public CookiesBanner(WebDriver driver) {

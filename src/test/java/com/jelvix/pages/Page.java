@@ -1,9 +1,7 @@
 package com.jelvix.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.jelvix.cookies.CookiesHandler;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -15,6 +13,7 @@ public class Page {
     protected static JavascriptExecutor jsExecutor;
     protected static Actions actions;
     private static String host;
+    private CookiesHandler cookiesHandler;
 
 
     public Page(WebDriver driver) {
@@ -23,6 +22,8 @@ public class Page {
         wait = new WebDriverWait(driver, 10);
         jsExecutor = (JavascriptExecutor) driver;
         actions = new Actions(driver);
+        cookiesHandler = new CookiesHandler();
+
     }
 
     public Page(WebDriver driver, String host) {
@@ -46,4 +47,11 @@ public class Page {
     public static String getHost() {
         return host;
     }
+
+    public void launchThePageWithAcceptedCookies() {
+        driver.manage().addCookie(cookiesHandler.getCookieNoticeAcceptedCookie());
+        driver.manage().addCookie(cookiesHandler.getCloseCovidCookie());
+        driver.manage().addCookie(cookiesHandler.getCloseSubscribeCookie());
+    }
+
 }
