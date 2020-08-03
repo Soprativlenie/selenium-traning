@@ -12,7 +12,7 @@ public class Page_CaseStudies extends Page {
     }
 
     @FindBy(xpath = "//h1[1]")
-    public WebElement titleOfThePage;
+    private WebElement titleOfThePage;
 
     public Page_CaseStudies open() {
         driver.get(Page.getHost()+ PagePaths.CASE_STUDIES.getLink());
@@ -25,6 +25,10 @@ public class Page_CaseStudies extends Page {
 
     public String getUrl() {
         return PagePaths.CASE_STUDIES.getLink();
+    }
+
+    public boolean isTitleDisplayed(){
+        return titleOfThePage.isDisplayed();
     }
 
 }

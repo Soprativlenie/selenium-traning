@@ -13,13 +13,13 @@ public class Page_Main extends Page {
     }
 
     @FindBy(xpath = "//span[contains(text(),'More About Us')]")
-    public WebElement moreAboutUsBtn;
+    private WebElement moreAboutUsBtn;
 
     @FindBy(xpath = "//div[@class='active-state']")
-    public WebElement bla;
+    private WebElement bla;
 
     @FindBy(xpath = "//div[@class='dots-block']//span[contains(text(),'See All Case Studies')]")
-    public WebElement seeAllCaseStudiesBtn;
+    private WebElement seeAllCaseStudiesBtn;
 
 
     public Page_Main open() {
@@ -37,5 +37,9 @@ public class Page_Main extends Page {
 //        actions.moveToElement(seeAllCaseStudiesBtn).perform();
 //        actions.click();
 //        seeAllCaseStudiesBtn.click();
+    }
+
+    public void clickMoreAboutUsButton(){
+        moreAboutUsBtn.click();
     }
 }

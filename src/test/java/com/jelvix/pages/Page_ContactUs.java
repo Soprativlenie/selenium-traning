@@ -14,25 +14,25 @@ public class Page_ContactUs extends Page {
     }
 
     @FindBy(id = "contact-name")
-    public WebElement fullNameInput;
+    private WebElement fullNameInput;
 
     @FindBy(id = "contact-company")
-    public WebElement companyInput;
+    private WebElement companyInput;
 
     @FindBy(id = "contact-email")
-    public WebElement workEmailInput;
+    private WebElement workEmailInput;
 
     @FindBy(xpath = "//span[@class='jcf-select-text']")
-    public WebElement countryDropDown;
+    private WebElement countryDropDown;
 
     @FindBy(id = "contact-comment")
-    public WebElement projectDescriptionTextArea;
+    private WebElement projectDescriptionTextArea;
 
     @FindBy(xpath = "//span[@class='fake-input']")
-    public WebElement privacyCheckbox;
+    private WebElement privacyCheckbox;
 
     @FindBy(xpath = "//span[contains(text(),'Submit Form')]")
-    public WebElement submitFormBtn;
+    private WebElement submitFormBtn;
 
     public Page_ContactUs open() {
         driver.get(Page.getHost()+ PagePaths.CONTACT_US.getLink());

@@ -81,7 +81,7 @@ public class SmokeTest extends TestBase {
     public void shouldNot_displayedCovidBanner_WhenUserClosesIt() {
         pageMain.open();
         covidBanner.close();
-        navigationTabs.industriesBtn.click();
+        navigationTabs.clickIndustriesButton();
         Assert.assertFalse(covidBanner.isDisplayed());
     }
 
@@ -95,7 +95,7 @@ public class SmokeTest extends TestBase {
     public void shouldNot_displayedTheCookiesBanner_WhenUserAcceptIt() {
         pageMain.open();
         cookiesBanner.acceptCookiesBanner();
-        navigationTabs.companyBtn.click();
+        navigationTabs.clickCompanyButton();
         Assert.assertFalse(cookiesBanner.isCookiesBannerPresent());
     }
 
@@ -112,7 +112,7 @@ public class SmokeTest extends TestBase {
         pageMain.open();
         covidBanner.close();
         cookiesBanner.acceptCookiesBanner();
-        pageMain.moreAboutUsBtn.click();
+        pageMain.clickMoreAboutUsButton();
         Assert.assertEquals(pageCompany.getUrl(), page.getCurrentUrl());
     }
 
@@ -124,7 +124,7 @@ public class SmokeTest extends TestBase {
         pageMain.clickSeeAllCaseStudiesBtn();
         pageCaseStudies.waitUntilThePageIsLoaded();
         Assert.assertEquals(pageCaseStudies.getUrl(), page.getCurrentUrl());
-        Assert.assertTrue(pageCaseStudies.titleOfThePage.isDisplayed());
+        Assert.assertTrue(pageCaseStudies.isTitleDisplayed());
     }
 
     @Ignore //TODO: Wait until the reCaptcha will be disabled
@@ -139,11 +139,11 @@ public class SmokeTest extends TestBase {
         Assert.assertEquals(30, pageBlog.getNumberOfArticleOnThePage());
     }
 
-    @Test
+    @Test//TODO: THE BEGINNING OF THE REFACTORING
     public void should_showArticleWithTheNewsTag_WhenUserClicksOnTheNewsFilterBtn() {
         pageBlog.open();
         pageBlog.hoverOnTheCategoryBar();
-        pageBlog.newsFilterBtn.click();
+        pageBlog.clickTheFilterButton("News");
         pageBlog.waitUntilLoaderIsDisappearing();
         Assert.assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("NEWS"));
     }
@@ -152,7 +152,7 @@ public class SmokeTest extends TestBase {
     public void should_showArticleWithTheTrendsTag_WhenUserClicksOnTheTrendsFilterBtn() {
         pageBlog.open();
         pageBlog.hoverOnTheCategoryBar();
-        pageBlog.trendsFilterBtn.click();
+        pageBlog.clickTheFilterButton("Trends");
         pageBlog.waitUntilLoaderIsDisappearing();
         Assert.assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("TRENDS"));
     }
@@ -161,7 +161,7 @@ public class SmokeTest extends TestBase {
     public void should_showArticleWithTheBusinessTag_WhenUserClicksOnTheBusinessFilterBtn() {
         pageBlog.open();
         pageBlog.hoverOnTheCategoryBar();
-        pageBlog.businessFilterBtn.click();
+        pageBlog.clickTheFilterButton("Business");
         pageBlog.waitUntilLoaderIsDisappearing();
         Assert.assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("BUSINESS"));
     }
@@ -170,7 +170,7 @@ public class SmokeTest extends TestBase {
     public void should_showArticleWithTheEngineeringTag_WhenUserClicksOnTheEngineeringFilterBtn() {
         pageBlog.open();
         pageBlog.hoverOnTheCategoryBar();
-        pageBlog.engineeringFilterBtn.click();
+        pageBlog.clickTheFilterButton("Engineering");
         pageBlog.waitUntilLoaderIsDisappearing();
         Assert.assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("ENGINEERING"));
     }
@@ -179,7 +179,7 @@ public class SmokeTest extends TestBase {
     public void should_showArticleWithTheDesignTag_WhenUserClicksOnTheDesignFilterBtn() {
         pageBlog.open();
         pageBlog.hoverOnTheCategoryBar();
-        pageBlog.designFilterBtn.click();
+        pageBlog.clickTheFilterButton("Design");
         pageBlog.waitUntilLoaderIsDisappearing();
         Assert.assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("DESIGN"));
     }
@@ -188,7 +188,7 @@ public class SmokeTest extends TestBase {
     public void should_showArticleWithTheMobileTag_WhenUserClicksOnTheMobileFilterBtn() {
         pageBlog.open();
         pageBlog.hoverOnTheCategoryBar();
-        pageBlog.mobileFilterBtn.click();
+        pageBlog.clickTheFilterButton("Mobile");
         pageBlog.waitUntilLoaderIsDisappearing();
         Assert.assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("MOBILE"));
     }
@@ -197,7 +197,7 @@ public class SmokeTest extends TestBase {
     public void should_showArticleWithTheDataScienceTag_WhenUserClicksOnTheDataScienceFilterBtn() {
         pageBlog.open();
         pageBlog.hoverOnTheCategoryBar();
-        pageBlog.dataScienceFilterBtn.click();
+        pageBlog.clickTheFilterButton("Data Science");
         pageBlog.waitUntilLoaderIsDisappearing();
         Assert.assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("DATA SCIENCE"));
     }
@@ -206,7 +206,7 @@ public class SmokeTest extends TestBase {
     public void should_showArticleWithTheBlockchainTag_WhenUserClicksOnTheBlockchainFilterBtn() {
         pageBlog.open();
         pageBlog.hoverOnTheCategoryBar();
-        pageBlog.blockchainFilterBtn.click();
+        pageBlog.clickTheFilterButton("Blockchain");
         pageBlog.waitUntilLoaderIsDisappearing();
         Assert.assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("BLOCKCHAIN"));
     }
@@ -215,7 +215,7 @@ public class SmokeTest extends TestBase {
     public void should_showArticleWithTheARVRTag_WhenUserClicksOnTheARVRFilterBtn() {
         pageBlog.open();
         pageBlog.hoverOnTheCategoryBar();
-        pageBlog.arVrFilterBtn.click();
+        pageBlog.clickTheFilterButton("AR/VR");
         pageBlog.waitUntilLoaderIsDisappearing();
         Assert.assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("AR/VR"));
     }
@@ -224,7 +224,7 @@ public class SmokeTest extends TestBase {
     public void should_showSuccessMessage_WhenUserSubscribingTheNewsletter() {
         String email = "igorvd@mailinator.com";
         pageBlog.subscribeBlogByEmail(email);
-        Assert.assertTrue(pageBlog.subscriptionSuccessMessage.isDisplayed());
+        Assert.assertTrue(pageBlog.isSubscriptionSuccessMessageDisplayed());
     }
 
     @Test

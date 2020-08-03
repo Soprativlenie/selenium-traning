@@ -16,72 +16,73 @@ public class Page_Blog extends Page {
     }
 
     @FindBy(id = "s")
-    public WebElement searchField;
+    private WebElement searchField;
 
     @FindBy(id = "searchsubmit")
-    public WebElement searchBtn;
+    private WebElement searchBtn;
 
     @FindBy(xpath = "//input[@placeholder='Enter your email...']")
-    public WebElement subscriptionField;
+    private WebElement subscriptionField;
 
     @FindBy(xpath = "//div[@class='emaillist']//input[@type='submit']")
-    public WebElement subscriptionBtn;
+    private WebElement subscriptionBtn;
 
     @FindBy(xpath = "//div[@class='category-filter']/button")
-    public List<WebElement> filterBtns;
+    private List<WebElement> filterButtons;
+
     @FindBy(xpath = "//div[@class='category-filter']")
-    public WebElement categoryBar;
+    private WebElement categoryBar;
 
     @FindBy(xpath = "//button[contains(text(),'All')]")
-    public WebElement allFilterBtn;
+    private WebElement allFilterButton;
 
     @FindBy(xpath = "//button[contains(text(),'News')]")
-    public WebElement newsFilterBtn;
+    private WebElement newsFilterButton;
 
     @FindBy(xpath = "//button[contains(text(),'Trends')]")
-    public WebElement trendsFilterBtn;
+    private WebElement trendsFilterButton;
 
     @FindBy(xpath = "//button[contains(text(),'Business')]")
-    public WebElement businessFilterBtn;
+    private WebElement businessFilterButton;
 
     @FindBy(xpath = "//button[contains(text(),'Engineering')]")
-    public WebElement engineeringFilterBtn;
+    private WebElement engineeringFilterButton;
 
     @FindBy(xpath = "//button[contains(text(),'Design')]")
-    public WebElement designFilterBtn;
+    private WebElement designFilterButton;
 
     @FindBy(xpath = "//button[contains(text(),'Mobile')]")
-    public WebElement mobileFilterBtn;
+    private WebElement mobileFilterButton;
 
     @FindBy(xpath = "//button[contains(text(),'Data Science')]")
-    public WebElement dataScienceFilterBtn;
+    private WebElement dataScienceFilterButton;
 
     @FindBy(xpath = "//button[contains(text(),'Blockchain')]")
-    public WebElement blockchainFilterBtn;
+    private WebElement blockchainFilterButton;
 
     @FindBy(xpath = "//button[contains(text(),'AR/VR')]")
-    public WebElement arVrFilterBtn;
+    private WebElement arVrFilterButton;
 
     @FindBy(xpath = "//div[@class='blog-col ']")
     private List<WebElement> articles;
 
     @FindBy(xpath = "//div[@class='blog-col ']//div[@class='hashtags']")
-    public List<WebElement> hashtags;
+    private List<WebElement> hashtags;
 
     @FindBy(xpath = "//div[@class='blog-col '][1]")
-    public WebElement firstArticle;
+    private WebElement firstArticle;
 
     @FindBy(xpath = "//div[@class='blog-col '][last()]")
-    public WebElement lastArticle;
+    private WebElement lastArticle;
 
     @FindBy(xpath = "//div[@class ='loader blue']")
-    public WebElement loader;
+    private WebElement loader;
 
     @FindBy(xpath = "//span[@class='es_subscription_message success']")
-    public WebElement subscriptionSuccessMessage;
+    private WebElement subscriptionSuccessMessage;
 
     @FindBy(xpath = "//span[@id='spinner-image']")
-    public WebElement subscriptionLoader;
+    private WebElement subscriptionLoader;
 
     public int getNumberOfArticleOnThePage() {
         return articles.size();
@@ -94,9 +95,8 @@ public class Page_Blog extends Page {
     }
 
     public boolean isAllArticlesSortedByCorrectTag(String tagName) {
-        CharSequence tagNameInChar = tagName;
         for (WebElement hashTag : hashtags) {
-            if (!hashTag.getText().contains(tagNameInChar)) {
+            if (!hashTag.getText().contains(tagName)) {
                 return false;
             }
         }
@@ -131,8 +131,21 @@ public class Page_Blog extends Page {
         wait.until(ExpectedConditions.visibilityOf(subscriptionSuccessMessage));
     }
 
-    public void openTheSingleBlogPage(){
+    public void openTheSingleBlogPage() {
         open().firstArticle.click();
+    }
+
+    public void clickTheFilterButton(String buttonName) {
+        for (WebElement button : filterButtons) {
+            if (button.getText().equalsIgnoreCase(buttonName)) {
+                button.click();
+                break;
+            }
+        }
+    }
+
+    public boolean isSubscriptionSuccessMessageDisplayed() {
+        return subscriptionSuccessMessage.isDisplayed();
     }
 
 }

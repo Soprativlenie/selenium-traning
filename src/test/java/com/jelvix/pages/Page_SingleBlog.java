@@ -15,13 +15,13 @@ public class Page_SingleBlog extends Page {
     }
 
     @FindBy(xpath = "//div[@class='social-block bottom-block']")
-    public WebElement socialBlock;
+    private WebElement socialBlock;
 
     @FindBy(xpath = "")
-    public WebElement subscriptionField;
+    private WebElement subscriptionField;
 
     @FindBy(xpath = "")
-    public WebElement subscriptionBtn;
+    private WebElement subscriptionBtn;
 
     @FindBy(xpath = "//div[@class='sidebar-block sidebar-btn-block']")
     private WebElement contactUsButtonBlock;
@@ -30,13 +30,13 @@ public class Page_SingleBlog extends Page {
     private WebElement structureBlock;
 
     @FindBy(xpath = "//div[@class='rate-block']")
-    public WebElement rateBlock;
+    private WebElement rateBlock;
 
     @FindBy(xpath = "//div[@class='next-article']")
-    public WebElement readNextBlock;
+    private WebElement readNextBlock;
 
     @FindBy(id = "disqus_thread")
-    public WebElement disqusBlogCommentBlock;
+    private WebElement disqusBlogCommentBlock;
 
     @FindBy(xpath = "//div[@class='blog-columns second-row dots flat-columns']")
     private WebElement recommendedForYouBlock;
@@ -45,7 +45,7 @@ public class Page_SingleBlog extends Page {
     private List<WebElement> recommendedForYouArticles;
 
     @FindBy(xpath = "//a[@class='btn btn-line btn-dark']")
-    public WebElement seeAllArticlesBtn;
+    private WebElement seeAllArticlesBtn;
 
     @FindBy(xpath = "//div[@class='subscribe-popup']")
     private WebElement subscriptionPopup;
