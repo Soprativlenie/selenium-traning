@@ -11,63 +11,63 @@ public class SmokeTest extends TestBase {
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheBlogPage() throws IOException {
         pageBlog.open();
-        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageBlog.getAllImagesWithSrcAttr());
+        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageBlog.getAllImagesLinks());
         Assert.assertTrue(isHttpCode200);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheCaseStudiesPage() throws IOException {
         pageCaseStudies.open();
-        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageCaseStudies.getAllImagesWithSrcAttr());
+        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageCaseStudies.getAllImagesLinks());
         Assert.assertTrue(isHttpCode200);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheCompanyPage() throws IOException {
         pageCompany.open();
-        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageCompany.getAllImagesWithSrcAttr());
+        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageCompany.getAllImagesLinks());
         Assert.assertTrue(isHttpCode200);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheContactUsPage() throws IOException {
         pageContactUs.open();
-        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageContactUs.getAllImagesWithSrcAttr());
+        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageContactUs.getAllImagesLinks());
         Assert.assertTrue(isHttpCode200);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheExpertisePage() throws IOException {
         pageExpertise.open();
-        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageExpertise.getAllImagesWithSrcAttr());
+        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageExpertise.getAllImagesLinks());
         Assert.assertTrue(isHttpCode200);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheIndustriesPage() throws IOException {
         pageIndustries.open();
-        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageIndustries.getAllImagesWithSrcAttr());
+        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageIndustries.getAllImagesLinks());
         Assert.assertTrue(isHttpCode200);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheMainPage() throws IOException {
         pageMain.open();
-        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageMain.getAllImagesWithSrcAttr());
+        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageMain.getAllImagesLinks());
         Assert.assertTrue(isHttpCode200);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheServicesPage() throws IOException {
         pageServices.open();
-        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageServices.getAllImagesWithSrcAttr());
+        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageServices.getAllImagesLinks());
         Assert.assertTrue(isHttpCode200);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheTechnologiesPage() throws IOException {
         pageTechnologies.open();
-        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageTechnologies.getAllImagesWithSrcAttr());
+        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageTechnologies.getAllImagesLinks());
         Assert.assertTrue(isHttpCode200);
     }
 

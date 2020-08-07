@@ -39,7 +39,7 @@ public class Page_Main extends Page {
 //        seeAllCaseStudiesBtn.click();
     }
 
-    public void clickMoreAboutUsButton(){
+    public void clickMoreAboutUsButton() {
         moreAboutUsBtn.click();
     }
 }

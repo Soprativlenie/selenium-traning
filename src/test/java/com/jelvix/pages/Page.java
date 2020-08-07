@@ -5,6 +5,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Page {
@@ -14,6 +15,7 @@ public class Page {
     protected static Actions actions;
     private static String host;
     private CookiesHandler cookiesHandler;
+    private List<String> imagesLinks = new ArrayList<>();
 
 
     public Page(WebDriver driver) {
@@ -40,8 +42,11 @@ public class Page {
         return driver.getCurrentUrl();
     }
 
-    public List<WebElement> getAllImagesWithSrcAttr() {
-        return driver.findElements(By.tagName("img"));
+    public List<String> getAllImagesLinks() {
+        addLinksAreLinkedToImagesWithSrcAttribute();
+        addLinksAreLinkedToImagesWithSrcSetAttribute();
+        addLinksAreLinkedToImagesWithXlinkHrefAttribute();
+        return imagesLinks;
     }
 
     public static String getHost() {
@@ -52,6 +57,50 @@ public class Page {
         driver.manage().addCookie(cookiesHandler.getCookieNoticeAcceptedCookie());
         driver.manage().addCookie(cookiesHandler.getCloseCovidCookie());
         driver.manage().addCookie(cookiesHandler.getCloseSubscribeCookie());
+    }
+
+    private void addLinksAreLinkedToImagesWithSrcAttribute() {
+        try {
+            List<WebElement> imgTegs = driver.findElements(By.tagName("img"));
+            for (WebElement img : imgTegs) {
+                if (img.getAttribute("src").length() == 0) {
+                    continue;
+                }
+                imagesLinks.add(img.getAttribute("src"));
+            }
+        } catch (NoSuchElementException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void addLinksAreLinkedToImagesWithSrcSetAttribute() {
+        try {
+            List<WebElement> imgTags = driver.findElements(By.tagName("img"));
+            for (WebElement img : imgTags) {
+                if (img.getAttribute("srcset").length() == 0) {
+                    continue;
+                }
+                imagesLinks.add(img.getAttribute("srcset"));
+            }
+        } catch (NoSuchElementException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void addLinksAreLinkedToImagesWithXlinkHrefAttribute() {
+        try {
+            List<WebElement> useTags = driver.findElements(By.cssSelector(".img-holder>svg>use"));
+            for (WebElement useTag : useTags) {
+                if (useTag.getAttribute("xlink:href").length() == 0) {
+                    continue;
+                }
+                imagesLinks.add(useTag.getAttribute("xlink:href"));
+            }
+        } catch (NoSuchElementException ex) {
+            ex.printStackTrace();
+        }
+
+
     }
 
 }
