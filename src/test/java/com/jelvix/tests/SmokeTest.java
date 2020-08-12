@@ -1,10 +1,17 @@
 package com.jelvix.tests;
 
+import com.jayway.jsonpath.JsonPath;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SmokeTest extends TestBase {
 
@@ -277,6 +284,24 @@ public class SmokeTest extends TestBase {
         pageMain.launchThePageWithAcceptedCookies();
         pageBlog.openTheSingleBlogPage();
         pageSingleBlog.hoverOverTheLastSectionOfTheArticle();
+    }
+
+    @Test
+    public void shouldCombineIntegrationAndUiTest() throws UnirestException {
+        Map<String, Object> fields = new HashMap<>();
+        fields.put("action", "blog_option");
+        fields.put("blog_option[category]", "trends");
+        fields.put("blog_option[role]", "null");
+        String json = Unirest.post("https://jelvix.com/wp-admin/admin-ajax.php")
+                .fields(fields)
+                .asString()
+                .getBody();
+
+        List<String> responseHashtags = JsonPath.read(json, "$.posts[*].hashtags[0]");
+
+
+        System.out.println(responseHashtags);
+
     }
 
 }

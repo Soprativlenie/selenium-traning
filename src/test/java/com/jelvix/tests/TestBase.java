@@ -30,8 +30,8 @@ public class TestBase {
     protected Footer footer;
     protected NavigationTabs navigationTabs;
     protected Page page;
-    protected Page_Blog pageBlog;
-    protected Page_CaseStudies pageCaseStudies;
+    protected BlogPage pageBlog;
+    protected CaseStudiesPage pageCaseStudies;
     protected Page_Company pageCompany;
     protected Page_ContactUs pageContactUs;
     protected Page_Expertise pageExpertise;
@@ -45,7 +45,7 @@ public class TestBase {
 
     @Before
     public void start() {
-        System.setProperty("webdriver.chrome.driver", "/home/user/Downloads/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "/home/user/Downloads/Drivers/chromedriver");
         options = new ChromeOptions();
 //        options.addArguments("--headless");
 //        options.addArguments("window-size=1920,1080");
@@ -62,9 +62,9 @@ public class TestBase {
         page = new Page(driver, PRODUCTION_HOST);
         pageMain = new Page_Main(driver);
         pageCompany = new Page_Company(driver);
-        pageCaseStudies = new Page_CaseStudies(driver);
+        pageCaseStudies = new CaseStudiesPage(driver);
         pageContactUs = new Page_ContactUs(driver);
-        pageBlog = new Page_Blog(driver);
+        pageBlog = new BlogPage(driver);
         pageExpertise = new Page_Expertise(driver);
         pageIndustries = new Page_Industries(driver);
         pageServices = new Page_Services(driver);
