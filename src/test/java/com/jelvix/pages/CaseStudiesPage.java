@@ -5,8 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Page_CaseStudies extends Page {
-    public Page_CaseStudies(WebDriver driver) {
+public class CaseStudiesPage extends Page {
+    public CaseStudiesPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
@@ -14,7 +14,7 @@ public class Page_CaseStudies extends Page {
     @FindBy(xpath = "//h1[1]")
     private WebElement titleOfThePage;
 
-    public Page_CaseStudies open() {
+    public CaseStudiesPage open() {
         driver.get(Page.getHost()+ PagePaths.CASE_STUDIES.getLink());
         return this;
     }

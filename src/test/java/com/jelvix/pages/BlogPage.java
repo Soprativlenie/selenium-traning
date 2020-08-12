@@ -8,9 +8,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
-public class Page_Blog extends Page {
+public class BlogPage extends Page {
 
-    public Page_Blog(WebDriver driver) {
+    public BlogPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
@@ -88,7 +88,7 @@ public class Page_Blog extends Page {
         return articles.size();
     }
 
-    public Page_Blog open() {
+    public BlogPage open() {
         driver.get(Page.getHost() + PagePaths.BLOG.getLink());
         actions.moveToElement(firstArticle).perform();
         return this;
@@ -147,5 +147,6 @@ public class Page_Blog extends Page {
     public boolean isSubscriptionSuccessMessageDisplayed() {
         return subscriptionSuccessMessage.isDisplayed();
     }
+
 
 }
