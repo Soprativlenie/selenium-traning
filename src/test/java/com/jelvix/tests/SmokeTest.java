@@ -1,6 +1,8 @@
 package com.jelvix.tests;
 
 import com.jayway.jsonpath.JsonPath;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.junit.Assert;
@@ -8,7 +10,8 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.InputStream;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,64 +21,64 @@ public class SmokeTest extends TestBase {
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheBlogPage() throws IOException {
         pageBlog.open();
-        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageBlog.getAllImagesLinks());
-        Assert.assertTrue(isHttpCode200);
+        boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageBlog.getAllImagesLinks());
+        Assert.assertTrue(isHttpCodeSuccess);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheCaseStudiesPage() throws IOException {
         pageCaseStudies.open();
-        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageCaseStudies.getAllImagesLinks());
-        Assert.assertTrue(isHttpCode200);
+        boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageCaseStudies.getAllImagesLinks());
+        Assert.assertTrue(isHttpCodeSuccess);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheCompanyPage() throws IOException {
         pageCompany.open();
-        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageCompany.getAllImagesLinks());
-        Assert.assertTrue(isHttpCode200);
+        boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageCompany.getAllImagesLinks());
+        Assert.assertTrue(isHttpCodeSuccess);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheContactUsPage() throws IOException {
         pageContactUs.open();
-        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageContactUs.getAllImagesLinks());
-        Assert.assertTrue(isHttpCode200);
+        boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageContactUs.getAllImagesLinks());
+        Assert.assertTrue(isHttpCodeSuccess);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheExpertisePage() throws IOException {
         pageExpertise.open();
-        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageExpertise.getAllImagesLinks());
-        Assert.assertTrue(isHttpCode200);
+        boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageExpertise.getAllImagesLinks());
+        Assert.assertTrue(isHttpCodeSuccess);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheIndustriesPage() throws IOException {
         pageIndustries.open();
-        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageIndustries.getAllImagesLinks());
-        Assert.assertTrue(isHttpCode200);
+        boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageIndustries.getAllImagesLinks());
+        Assert.assertTrue(isHttpCodeSuccess);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheMainPage() throws IOException {
         pageMain.open();
-        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageMain.getAllImagesLinks());
-        Assert.assertTrue(isHttpCode200);
+        boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageMain.getAllImagesLinks());
+        Assert.assertTrue(isHttpCodeSuccess);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheServicesPage() throws IOException {
         pageServices.open();
-        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageServices.getAllImagesLinks());
-        Assert.assertTrue(isHttpCode200);
+        boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageServices.getAllImagesLinks());
+        Assert.assertTrue(isHttpCodeSuccess);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheTechnologiesPage() throws IOException {
         pageTechnologies.open();
-        boolean isHttpCode200 = requestSender.isImagesLinkValid(pageTechnologies.getAllImagesLinks());
-        Assert.assertTrue(isHttpCode200);
+        boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageTechnologies.getAllImagesLinks());
+        Assert.assertTrue(isHttpCodeSuccess);
     }
 
     @Test
@@ -288,19 +291,28 @@ public class SmokeTest extends TestBase {
 
     @Test
     public void shouldCombineIntegrationAndUiTest() throws UnirestException {
-        Map<String, Object> fields = new HashMap<>();
-        fields.put("action", "blog_option");
-        fields.put("blog_option[category]", "trends");
-        fields.put("blog_option[role]", "null");
-        String json = Unirest.post("https://jelvix.com/wp-admin/admin-ajax.php")
-                .fields(fields)
+        Map<String, Object> formData = new HashMap<>();
+        formData.put("action", "blog_option");
+        formData.put("blog_option[category]", "trends");
+        formData.put("blog_option[role]", "null");
+        String blogResponse = Unirest.post("https://jelvix.com/wp-admin/admin-ajax.php")
+                .fields(formData)
                 .asString()
                 .getBody();
 
-        List<String> responseHashtags = JsonPath.read(json, "$.posts[*].hashtags[0]");
+        List<String> responseHashtags = JsonPath.read(blogResponse, "$.posts[*].hashtags[0]");
+
+        HttpResponse<JsonNode> response = Unirest.post("https://jelvix.com/wp-admin/admin-ajax.php")
+                .fields(formData)
+                .asJson();
+        Assert.assertTrue(response.getStatus() >= 200 && response.getStatus() <= 208);
+        System.out.println(Arrays.toString(new InputStream[]{response.getRawBody()}));
 
 
-        System.out.println(responseHashtags);
+    }
+
+    @Test
+    public void testBla() {
 
     }
 
