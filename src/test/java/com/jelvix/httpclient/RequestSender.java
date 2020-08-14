@@ -19,7 +19,9 @@ public class RequestSender {
                 HttpGet requestByLink = new HttpGet(link);
                 CloseableHttpResponse response = httpClient.execute(requestByLink);
                 try {
-                    System.out.println(testCounter + " " + requestByLink + " " + response.getStatusLine().getStatusCode());
+                    System.out.println(testCounter + " " + requestByLink + " " + response
+                            .getStatusLine()
+                            .getStatusCode());// Debug print
                     testCounter++;// Debug print
                     if (response.getStatusLine().getStatusCode() != 200) {
                         System.out.println(response.getStatusLine().getStatusCode());

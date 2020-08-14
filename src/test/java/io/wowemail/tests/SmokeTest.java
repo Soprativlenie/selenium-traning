@@ -1,47 +1,33 @@
-package io.wowemail;
+package io.wowemail.tests;/* Created by user on 14.08.20 */
 
+import com.mashape.unirest.http.exceptions.UnirestException;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
-public class TestBase {
-    private static WebDriver driver;
-    private static WebDriverWait wait;
-    private static JavascriptExecutor js;
-//  C:/38095/Downloads/chromedriver.exe
-    @Before
-    public void init() {
-        System.setProperty("webdriver.chrome.driver", "/home/user/Downloads/chromedriver");
-        driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, 10);
-        js = (JavascriptExecutor) driver;
-        driver.manage().window().maximize();
-
-    }
+public class SmokeTest extends TestBase {
+    private String name = "John Doe";
+    private String email = "testwowemail@mailinator.com";
+    private String message = "Hi there! Please contact me";
 
     @Test
-    public void checkEmailFromGetInTouchForm() {
+    public void checkEmailFromGetInTouchForm() throws UnirestException {
+
         driver.get("http://192.168.88.112");
-        driver.findElement(By.id("name-input")).sendKeys("Igor");
-        driver.findElement(By.id("email-input")).sendKeys("igor.vdovichenko@jelvix.com");
-        driver.findElement(By.id("message-input")).sendKeys("Some message");
+        driver.findElement(By.id("name-input")).sendKeys(name);
+        driver.findElement(By.id("email-input")).sendKeys(email);
+        driver.findElement(By.id("message-input")).sendKeys(message);
         driver.findElement(By.xpath("//button[@class='btn form-submit']")).click();
 
         WebElement successPopup = wait.until(visibilityOfElementLocated(By.id("thanks-sent-popup")));
-//        driver.findElement(By.xpath("//button[text()='Close']")).click();
 
-        isEmailCame();
+        isEmailCameUsingIntegrationWay(name, email, message);
     }
 
-    public void isEmailCame() {
+    public void isEmailCameUsingUiWay() {
         driver.get("https://flockmail.hostinger.com/");
         driver.findElement(By.xpath("//input[@placeholder='Enter your Email ID']")).sendKeys("support@wowemail.io");
         driver.findElement(By.xpath("//input[@placeholder='Enter your Password']")).sendKeys("WXcTnijDPJ");
@@ -56,13 +42,19 @@ public class TestBase {
         WebElement fr = driver.findElement(By.xpath("//div[@class='iframe-container']//iframe"));
         driver.switchTo().frame(fr);
         String actualEmail = driver.findElement(By.xpath("//div[@id='inbox-html-wrapper']//a")).getText();
-//        WebElement actualEmail = wait.until(visibilityOfElementLocated(By.xpath("//a[contains(text(),'ghghfh@hkjhkjh.jki')]")))
         Assert.assertEquals("igor.vdovichenko@jelvix.com", actualEmail);
         System.out.println(actualEmail);
     }
 
+
+    public void isEmailCameUsingIntegrationWay(String name, String email, String message) throws UnirestException {
+        String key = "Name: " + name + " Email: " + email + " Message: " + message;
+        Assert.assertEquals(key,
+                httpSender.getDataOfTheFirstMessage());
+    }
+
     @Test
-    public void sendTheContactFromJelvix(){
+    public void sendTheContactFromJelvix() {
         driver.get("// http://31.202.123.239:3043/");
         wait.until(visibilityOfElementLocated(By.xpath("//div[@class='info-banner']")));
         driver.findElement(By.xpath("//button[@class='close js-close-covid']")).click();
@@ -72,9 +64,4 @@ public class TestBase {
         driver.findElement(By.xpath("//div[@class='input-row']/div[1]//span[@class='fake-input']")).click();
         driver.findElement(By.xpath("//div[@class='input-row']/div[2]")).submit();
     }
-
-//    @After
-//    public void quit() {
-//        driver.quit();
-//    }
 }
