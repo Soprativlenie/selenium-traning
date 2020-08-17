@@ -5,12 +5,12 @@ import com.jelvix.pages.*;
 import com.jelvix.pages.pageblocks.*;
 import com.jelvix.useremailbox.Page_Mailinator;
 import com.jelvix.useremailbox.Page_MailinatorEmailBox;
-import org.junit.After;
-import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
@@ -43,7 +43,7 @@ public class TestBase {
     protected Page_MailinatorEmailBox pageMailinatorEmailBox;
     protected Page_SingleBlog pageSingleBlog;
 
-    @Before
+    @BeforeMethod
     public void start() {
         System.setProperty("webdriver.chrome.driver", "/home/user/Downloads/Drivers/chromedriver");
         options = new ChromeOptions();
@@ -76,7 +76,7 @@ public class TestBase {
     }
 
 
-    @After
+    @AfterMethod
     public void stop() {
         driver.quit();
     }

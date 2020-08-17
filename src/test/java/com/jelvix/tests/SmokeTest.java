@@ -5,9 +5,9 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
+
+import org.testng.annotations.Ignore;
+import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,75 +16,77 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.testng.Assert.*;
+
 public class SmokeTest extends TestBase {
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheBlogPage() throws IOException {
         pageBlog.open();
         boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageBlog.getAllImagesLinks());
-        Assert.assertTrue(isHttpCodeSuccess);
+        assertTrue(isHttpCodeSuccess);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheCaseStudiesPage() throws IOException {
         pageCaseStudies.open();
         boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageCaseStudies.getAllImagesLinks());
-        Assert.assertTrue(isHttpCodeSuccess);
+        assertTrue(isHttpCodeSuccess);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheCompanyPage() throws IOException {
         pageCompany.open();
         boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageCompany.getAllImagesLinks());
-        Assert.assertTrue(isHttpCodeSuccess);
+        assertTrue(isHttpCodeSuccess);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheContactUsPage() throws IOException {
         pageContactUs.open();
         boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageContactUs.getAllImagesLinks());
-        Assert.assertTrue(isHttpCodeSuccess);
+        assertTrue(isHttpCodeSuccess);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheExpertisePage() throws IOException {
         pageExpertise.open();
         boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageExpertise.getAllImagesLinks());
-        Assert.assertTrue(isHttpCodeSuccess);
+        assertTrue(isHttpCodeSuccess);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheIndustriesPage() throws IOException {
         pageIndustries.open();
         boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageIndustries.getAllImagesLinks());
-        Assert.assertTrue(isHttpCodeSuccess);
+        assertTrue(isHttpCodeSuccess);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheMainPage() throws IOException {
         pageMain.open();
         boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageMain.getAllImagesLinks());
-        Assert.assertTrue(isHttpCodeSuccess);
+        assertTrue(isHttpCodeSuccess);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheServicesPage() throws IOException {
         pageServices.open();
         boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageServices.getAllImagesLinks());
-        Assert.assertTrue(isHttpCodeSuccess);
+        assertTrue(isHttpCodeSuccess);
     }
 
     @Test
     public void should_verifyThatAllImagesAreNotBroken_OnTheTechnologiesPage() throws IOException {
         pageTechnologies.open();
         boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageTechnologies.getAllImagesLinks());
-        Assert.assertTrue(isHttpCodeSuccess);
+        assertTrue(isHttpCodeSuccess);
     }
 
     @Test
     public void should_showCovidBanner_When_TheUserTheFirstTimeOnWebSite() {
         pageMain.open();
-        Assert.assertTrue(covidBanner.isDisplayed());
+        assertTrue(covidBanner.isDisplayed());
     }
 
     @Test
@@ -92,13 +94,13 @@ public class SmokeTest extends TestBase {
         pageMain.open();
         covidBanner.close();
         navigationTabs.clickIndustriesButton();
-        Assert.assertFalse(covidBanner.isDisplayed());
+        assertFalse(covidBanner.isDisplayed());
     }
 
     @Test
     public void should_showCookiesBanner_When_TheUserTheFirstTimeOnWebSite() {
         pageMain.open();
-        Assert.assertTrue(cookiesBanner.isCookiesBannerPresent());
+        assertTrue(cookiesBanner.isCookiesBannerPresent());
     }
 
     @Test
@@ -106,7 +108,7 @@ public class SmokeTest extends TestBase {
         pageMain.open();
         cookiesBanner.acceptCookiesBanner();
         navigationTabs.clickCompanyButton();
-        Assert.assertFalse(cookiesBanner.isCookiesBannerPresent());
+        assertFalse(cookiesBanner.isCookiesBannerPresent());
     }
 
     @Test
@@ -114,7 +116,7 @@ public class SmokeTest extends TestBase {
         pageMain.open();
         covidBanner.close();
         contactUsForm.fullNameInput.sendKeys("Igor");
-        Assert.assertEquals("Igor", contactUsForm.fullNameInput.getAttribute("value"));
+        assertEquals("Igor", contactUsForm.fullNameInput.getAttribute("value"));
     }
 
     @Test
@@ -123,21 +125,21 @@ public class SmokeTest extends TestBase {
         covidBanner.close();
         cookiesBanner.acceptCookiesBanner();
         pageMain.clickMoreAboutUsButton();
-        Assert.assertEquals(pageCompany.getUrl(), page.getCurrentUrl());
+        assertEquals(pageCompany.getUrl(), page.getCurrentUrl());
     }
 
-    @Ignore // TODO: Fix the method
+    @Ignore() // TODO: Fix the method
     public void should_redirectToTheCaseStudiesPage_WhenUserClicksOnButton() {
         pageMain.open();
         covidBanner.close();
         cookiesBanner.acceptCookiesBanner();
         pageMain.clickSeeAllCaseStudiesBtn();
         pageCaseStudies.waitUntilThePageIsLoaded();
-        Assert.assertEquals(pageCaseStudies.getUrl(), page.getCurrentUrl());
-        Assert.assertTrue(pageCaseStudies.isTitleDisplayed());
+        assertEquals(pageCaseStudies.getUrl(), page.getCurrentUrl());
+        assertTrue(pageCaseStudies.isTitleDisplayed());
     }
 
-    @Ignore //TODO: Wait until the reCaptcha will be disabled
+    @Ignore("Unreachable due to ReCaptcha")
     public void should_sendContactUsForm() {
         pageContactUs.open();
         pageContactUs.fillAllInputWithValidData();
@@ -146,7 +148,7 @@ public class SmokeTest extends TestBase {
     @Test
     public void should_show30Articles_WhenUserOnThePage() {
         pageBlog.open();
-        Assert.assertEquals(30, pageBlog.getNumberOfArticleOnThePage());
+        assertEquals(30, pageBlog.getNumberOfArticleOnThePage());
     }
 
     @Test//TODO: THE BEGINNING OF THE REFACTORING
@@ -155,7 +157,7 @@ public class SmokeTest extends TestBase {
         pageBlog.hoverOnTheCategoryBar();
         pageBlog.clickTheFilterButton("News");
         pageBlog.waitUntilLoaderIsDisappearing();
-        Assert.assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("NEWS"));
+        assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("NEWS"));
     }
 
     @Test
@@ -164,7 +166,7 @@ public class SmokeTest extends TestBase {
         pageBlog.hoverOnTheCategoryBar();
         pageBlog.clickTheFilterButton("Trends");
         pageBlog.waitUntilLoaderIsDisappearing();
-        Assert.assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("TRENDS"));
+        assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("TRENDS"));
     }
 
     @Test
@@ -173,7 +175,7 @@ public class SmokeTest extends TestBase {
         pageBlog.hoverOnTheCategoryBar();
         pageBlog.clickTheFilterButton("Business");
         pageBlog.waitUntilLoaderIsDisappearing();
-        Assert.assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("BUSINESS"));
+        assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("BUSINESS"));
     }
 
     @Test
@@ -182,7 +184,7 @@ public class SmokeTest extends TestBase {
         pageBlog.hoverOnTheCategoryBar();
         pageBlog.clickTheFilterButton("Engineering");
         pageBlog.waitUntilLoaderIsDisappearing();
-        Assert.assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("ENGINEERING"));
+        assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("ENGINEERING"));
     }
 
     @Test
@@ -191,7 +193,7 @@ public class SmokeTest extends TestBase {
         pageBlog.hoverOnTheCategoryBar();
         pageBlog.clickTheFilterButton("Design");
         pageBlog.waitUntilLoaderIsDisappearing();
-        Assert.assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("DESIGN"));
+        assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("DESIGN"));
     }
 
     @Test
@@ -200,7 +202,7 @@ public class SmokeTest extends TestBase {
         pageBlog.hoverOnTheCategoryBar();
         pageBlog.clickTheFilterButton("Mobile");
         pageBlog.waitUntilLoaderIsDisappearing();
-        Assert.assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("MOBILE"));
+        assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("MOBILE"));
     }
 
     @Test
@@ -209,7 +211,7 @@ public class SmokeTest extends TestBase {
         pageBlog.hoverOnTheCategoryBar();
         pageBlog.clickTheFilterButton("Data Science");
         pageBlog.waitUntilLoaderIsDisappearing();
-        Assert.assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("DATA SCIENCE"));
+        assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("DATA SCIENCE"));
     }
 
     @Test
@@ -218,7 +220,7 @@ public class SmokeTest extends TestBase {
         pageBlog.hoverOnTheCategoryBar();
         pageBlog.clickTheFilterButton("Blockchain");
         pageBlog.waitUntilLoaderIsDisappearing();
-        Assert.assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("BLOCKCHAIN"));
+        assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("BLOCKCHAIN"));
     }
 
     @Test
@@ -227,14 +229,14 @@ public class SmokeTest extends TestBase {
         pageBlog.hoverOnTheCategoryBar();
         pageBlog.clickTheFilterButton("AR/VR");
         pageBlog.waitUntilLoaderIsDisappearing();
-        Assert.assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("AR/VR"));
+        assertTrue(pageBlog.isAllArticlesSortedByCorrectTag("AR/VR"));
     }
 
     @Test
     public void should_showSuccessMessage_WhenUserSubscribingTheNewsletter() {
         String email = "igorvd@mailinator.com";
         pageBlog.subscribeBlogByEmail(email);
-        Assert.assertTrue(pageBlog.isSubscriptionSuccessMessageDisplayed());
+        assertTrue(pageBlog.isSubscriptionSuccessMessageDisplayed());
     }
 
     @Test
@@ -242,35 +244,35 @@ public class SmokeTest extends TestBase {
         String email = "jelvixsub@mailinator.com";
         pageBlog.subscribeBlogByEmail(email);
         pageMailinator.goToEmailBox(email);
-        Assert.assertTrue(pageMailinatorEmailBox.isWelcomeLetterIsEmailed());
+        assertTrue(pageMailinatorEmailBox.isWelcomeLetterIsEmailed());
     }
 
     @Test
     public void should_verifyThatSubscriptionPopupAppears_WhenUserIsOnTheSingleBlogPageForTheFirstTime() {
         pageBlog.openTheSingleBlogPage();
         pageSingleBlog.hoverOverTheLastSectionOfTheArticle();
-        Assert.assertTrue(pageSingleBlog.isSubscriptionPopupDisplaying());
+        assertTrue(pageSingleBlog.isSubscriptionPopupDisplaying());
     }
 
     @Test
     public void should_verifyThatSocialBlockIsDisplay_WhenUserIsOnTheSingleBlogPage() {
         pageBlog.openTheSingleBlogPage();
         pageBlog.launchThePageWithAcceptedCookies();
-        Assert.assertTrue(pageSingleBlog.isSocialBlockDisplaying());
+        assertTrue(pageSingleBlog.isSocialBlockDisplaying());
     }
 
     @Test
     public void should_verifyThatStructureBlockIsDisplaying_WhenUserIsOnTheSingleBlogPage() {
         pageBlog.openTheSingleBlogPage();
         pageBlog.launchThePageWithAcceptedCookies();
-        Assert.assertTrue(pageSingleBlog.isStructureBlockDisplaying());
+        assertTrue(pageSingleBlog.isStructureBlockDisplaying());
     }
 
     @Test
     public void should_verifyThatContactUsBottomBlockIsDisplaying_WhenUserIsOnTheSingleBlogPage() {
         pageBlog.openTheSingleBlogPage();
         pageBlog.launchThePageWithAcceptedCookies();
-        Assert.assertTrue(pageSingleBlog.isContactUsBottomBlockDisplaying());
+        assertTrue(pageSingleBlog.isContactUsBottomBlockDisplaying());
     }
 
     @Test
@@ -278,7 +280,7 @@ public class SmokeTest extends TestBase {
         pageBlog.openTheSingleBlogPage();
         pageBlog.launchThePageWithAcceptedCookies();
         pageSingleBlog.hoverOverTheLastSectionOfTheArticle();
-        Assert.assertTrue(pageSingleBlog.isReadNextBlockDisplaying());
+        assertTrue(pageSingleBlog.isReadNextBlockDisplaying());
     }
 
     @Test
@@ -305,15 +307,9 @@ public class SmokeTest extends TestBase {
         HttpResponse<JsonNode> response = Unirest.post("https://jelvix.com/wp-admin/admin-ajax.php")
                 .fields(formData)
                 .asJson();
-        Assert.assertTrue(response.getStatus() >= 200 && response.getStatus() <= 208);
+        assertTrue(response.getStatus() >= 200 && response.getStatus() <= 208);
         System.out.println(Arrays.toString(new InputStream[]{response.getRawBody()}));
 
 
     }
-
-    @Test
-    public void testBla() {
-
-    }
-
 }
