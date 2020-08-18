@@ -6,9 +6,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 
-public class Page_ContactUs extends Page {
+public class ContactUsPage extends Page {
 
-    public Page_ContactUs(WebDriver driver) {
+    public ContactUsPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
@@ -34,7 +34,7 @@ public class Page_ContactUs extends Page {
     @FindBy(xpath = "//span[contains(text(),'Submit Form')]")
     private WebElement submitFormBtn;
 
-    public Page_ContactUs open() {
+    public ContactUsPage open() {
         driver.get(Page.getHost()+ PagePaths.CONTACT_US.getLink());
         return this;
     }

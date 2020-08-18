@@ -8,8 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
-public class Page_SingleBlog extends Page {
-    public Page_SingleBlog(WebDriver driver) {
+public class SingleBlogPage extends Page {
+    public SingleBlogPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }

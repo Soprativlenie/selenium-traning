@@ -2,14 +2,14 @@ package com.jelvix.pages;
 
 import org.openqa.selenium.WebDriver;
 
-public class Page_Company extends Page {
+public class CompanyPage extends Page {
 
 
-    public Page_Company(WebDriver driver) {
+    public CompanyPage(WebDriver driver) {
         super(driver);
     }
 
-    public Page_Company open() {
+    public CompanyPage open() {
         driver.get(Page.getHost() + PagePaths.COMPANY.getLink());
         return this;
     }
