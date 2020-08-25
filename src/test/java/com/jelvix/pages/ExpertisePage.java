@@ -12,7 +12,7 @@ public class ExpertisePage extends Page {
     }
 
     public ExpertisePage open() {
-        driver.get(Page.getHost()+ PagePaths.EXPERTISE.getLink());
+        driver.get(Page.getHost()+ PagePaths.EXPERTISE.getRoute());
         return this;
     }
 

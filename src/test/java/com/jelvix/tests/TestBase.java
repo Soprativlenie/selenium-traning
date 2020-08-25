@@ -1,5 +1,8 @@
 package com.jelvix.tests;
 
+import com.jelvix.driverfactory.Driver;
+import com.jelvix.driverfactory.DriverFactory;
+import com.jelvix.driverfactory.DriverType;
 import com.jelvix.httpclient.RequestSender;
 import com.jelvix.pages.*;
 import com.jelvix.pages.pageblocks.*;
@@ -23,6 +26,7 @@ public class TestBase {
     private static WebDriverWait wait;
     private ChromeOptions options;
     protected RequestSender requestSender;
+    private DriverFactory factory;
 
     protected ContactUsForm contactUsForm;
     protected CookiesBanner cookiesBanner;
@@ -45,7 +49,8 @@ public class TestBase {
 
     @BeforeMethod
     public void start() {
-        System.setProperty("webdriver.chrome.driver", "/home/user/Downloads/Drivers/chromedriver");
+        Driver chromeDriver = factory.getDriver(DriverType.CHROME);
+        chromeDriver.init();
         options = new ChromeOptions();
 //        options.addArguments("--headless");
 //        options.addArguments("window-size=1920,1080");
@@ -59,7 +64,7 @@ public class TestBase {
         covidBanner = new CovidBanner(driver);
         footer = new Footer(driver);
         navigationTabs = new NavigationTabs(driver);
-        page = new Page(driver, PRODUCTION_HOST);
+        page = new Page(PRODUCTION_HOST);
         pageMain = new MainPage(driver);
         pageCompany = new CompanyPage(driver);
         pageCaseStudies = new CaseStudiesPage(driver);

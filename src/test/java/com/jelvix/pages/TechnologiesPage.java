@@ -12,7 +12,7 @@ public class TechnologiesPage extends Page {
     }
 
     public TechnologiesPage open() {
-        driver.get(Page.getHost() + PagePaths.TECHNOLOGIES.getLink());
+        driver.get(Page.getHost() + PagePaths.TECHNOLOGIES.getRoute());
         return this;
     }
 }

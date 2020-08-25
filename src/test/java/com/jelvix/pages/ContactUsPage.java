@@ -35,7 +35,7 @@ public class ContactUsPage extends Page {
     private WebElement submitFormBtn;
 
     public ContactUsPage open() {
-        driver.get(Page.getHost()+ PagePaths.CONTACT_US.getLink());
+        driver.get(Page.getHost()+ PagePaths.CONTACT_US.getRoute());
         return this;
     }
 

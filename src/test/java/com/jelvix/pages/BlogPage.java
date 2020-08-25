@@ -89,7 +89,7 @@ public class BlogPage extends Page {
     }
 
     public BlogPage open() {
-        driver.get(Page.getHost() + PagePaths.BLOG.getLink());
+        driver.get(Page.getHost() + PagePaths.BLOG.getRoute());
         actions.moveToElement(firstArticle).perform();
         return this;
     }

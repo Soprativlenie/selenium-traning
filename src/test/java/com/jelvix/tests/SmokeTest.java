@@ -10,8 +10,6 @@ import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -276,20 +274,13 @@ public class SmokeTest extends TestBase {
     }
 
     @Test
-    public void should_verifyThatReadNextBlockIsDisplaying() {
+    public void should_verifyThatReadNextBlockIsDisplaying_WhenUserIsOnTheSingleBlogPage() {
         pageBlog.openTheSingleBlogPage();
         pageBlog.launchThePageWithAcceptedCookies();
         pageSingleBlog.hoverOverTheLastSectionOfTheArticle();
         assertTrue(pageSingleBlog.isReadNextBlockDisplaying());
     }
 
-    @Test
-    public void shouldCloseSubscribePopUp() {
-        pageMain.open();
-        pageMain.launchThePageWithAcceptedCookies();
-        pageBlog.openTheSingleBlogPage();
-        pageSingleBlog.hoverOverTheLastSectionOfTheArticle();
-    }
 
     @Test
     public void shouldCombineIntegrationAndUiTest() throws UnirestException {
@@ -308,7 +299,8 @@ public class SmokeTest extends TestBase {
                 .fields(formData)
                 .asJson();
         assertTrue(response.getStatus() >= 200 && response.getStatus() <= 208);
-        System.out.println(Arrays.toString(new InputStream[]{response.getRawBody()}));
+//        pageBlog.clickTheFilterButton("TRENDS");
+//        pageBlog.isAllArticlesSortedByCorrectTag()
 
 
     }

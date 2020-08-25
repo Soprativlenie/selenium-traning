@@ -15,7 +15,7 @@ public class CaseStudiesPage extends Page {
     private WebElement titleOfThePage;
 
     public CaseStudiesPage open() {
-        driver.get(Page.getHost()+ PagePaths.CASE_STUDIES.getLink());
+        driver.get(Page.getHost()+ PagePaths.CASE_STUDIES.getRoute());
         return this;
     }
 
@@ -24,7 +24,7 @@ public class CaseStudiesPage extends Page {
     }
 
     public String getUrl() {
-        return PagePaths.CASE_STUDIES.getLink();
+        return PagePaths.CASE_STUDIES.getRoute();
     }
 
     public boolean isTitleDisplayed(){

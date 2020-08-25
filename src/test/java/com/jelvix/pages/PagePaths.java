@@ -9,7 +9,7 @@ public enum PagePaths {
         this.link = link;
     }
 
-    public String getLink() {
+    public String getRoute() {
         return link;
     }
 

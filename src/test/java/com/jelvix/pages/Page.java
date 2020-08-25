@@ -28,14 +28,8 @@ public class Page {
 
     }
 
-    public Page(WebDriver driver, String host) {
-        System.setProperty("webdriver.chrome.driver", "home/user/Downloads/chromedriver");
-        Page.driver = driver;
-        wait = new WebDriverWait(driver, 10);
-        jsExecutor = (JavascriptExecutor) driver;
-        actions = new Actions(driver);
+    public Page(String host) {
         Page.host = host;
-
     }
 
     public String getCurrentUrl() {

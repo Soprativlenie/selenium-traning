@@ -9,7 +9,7 @@ public class IndustriesPage extends Page {
         PageFactory.initElements(driver, this);
     }
     public IndustriesPage open() {
-        driver.get(Page.getHost()+ PagePaths.INDUSTRIES.getLink());
+        driver.get(Page.getHost()+ PagePaths.INDUSTRIES.getRoute());
         return this;
     }
 
