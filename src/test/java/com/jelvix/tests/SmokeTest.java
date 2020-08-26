@@ -19,76 +19,76 @@ import static org.testng.Assert.*;
 public class SmokeTest extends TestBase {
 
     @Test
-    public void should_verifyThatAllImagesAreNotBroken_OnTheBlogPage() throws IOException {
+    public void should_VerifyThatAllImagesAreNotBroken_When_TheUserOnTheBlogPage() throws IOException {
         pageBlog.open();
         boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageBlog.getAllImagesLinks());
         assertTrue(isHttpCodeSuccess);
     }
 
     @Test
-    public void should_verifyThatAllImagesAreNotBroken_OnTheCaseStudiesPage() throws IOException {
+    public void should_VerifyThatAllImagesAreNotBroken_OnTheCaseStudiesPage() throws IOException {
         pageCaseStudies.open();
         boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageCaseStudies.getAllImagesLinks());
         assertTrue(isHttpCodeSuccess);
     }
 
     @Test
-    public void should_verifyThatAllImagesAreNotBroken_OnTheCompanyPage() throws IOException {
+    public void should_VerifyThatAllImagesAreNotBroken_OnTheCompanyPage() throws IOException {
         pageCompany.open();
         boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageCompany.getAllImagesLinks());
         assertTrue(isHttpCodeSuccess);
     }
 
     @Test
-    public void should_verifyThatAllImagesAreNotBroken_OnTheContactUsPage() throws IOException {
+    public void should_VerifyThatAllImagesAreNotBroken_OnTheContactUsPage() throws IOException {
         pageContactUs.open();
         boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageContactUs.getAllImagesLinks());
         assertTrue(isHttpCodeSuccess);
     }
 
     @Test
-    public void should_verifyThatAllImagesAreNotBroken_OnTheExpertisePage() throws IOException {
+    public void should_VerifyThatAllImagesAreNotBroken_OnTheExpertisePage() throws IOException {
         pageExpertise.open();
         boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageExpertise.getAllImagesLinks());
         assertTrue(isHttpCodeSuccess);
     }
 
     @Test
-    public void should_verifyThatAllImagesAreNotBroken_OnTheIndustriesPage() throws IOException {
+    public void should_VerifyThatAllImagesAreNotBroken_OnTheIndustriesPage() throws IOException {
         pageIndustries.open();
         boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageIndustries.getAllImagesLinks());
         assertTrue(isHttpCodeSuccess);
     }
 
     @Test
-    public void should_verifyThatAllImagesAreNotBroken_OnTheMainPage() throws IOException {
+    public void should_VerifyThatAllImagesAreNotBroken_OnTheMainPage() throws IOException {
         pageMain.open();
         boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageMain.getAllImagesLinks());
         assertTrue(isHttpCodeSuccess);
     }
 
     @Test
-    public void should_verifyThatAllImagesAreNotBroken_OnTheServicesPage() throws IOException {
+    public void should_VerifyThatAllImagesAreNotBroken_OnTheServicesPage() throws IOException {
         pageServices.open();
         boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageServices.getAllImagesLinks());
         assertTrue(isHttpCodeSuccess);
     }
 
     @Test
-    public void should_verifyThatAllImagesAreNotBroken_OnTheTechnologiesPage() throws IOException {
+    public void should_VerifyThatAllImagesAreNotBroken_OnTheTechnologiesPage() throws IOException {
         pageTechnologies.open();
         boolean isHttpCodeSuccess = requestSender.isImagesLinkValid(pageTechnologies.getAllImagesLinks());
         assertTrue(isHttpCodeSuccess);
     }
 
     @Test
-    public void should_showCovidBanner_When_TheUserTheFirstTimeOnWebSite() {
+    public void should_ShowCovidBanner_When_TheUserTheFirstTimeOnWebSite() {
         pageMain.open();
         assertTrue(covidBanner.isDisplayed());
     }
 
     @Test
-    public void shouldNot_displayedCovidBanner_WhenUserClosesIt() {
+    public void should_NotDisplayingCovidBanner_When_TheUserClosesIt() {
         pageMain.open();
         covidBanner.close();
         navigationTabs.clickIndustriesButton();
@@ -96,13 +96,13 @@ public class SmokeTest extends TestBase {
     }
 
     @Test
-    public void should_showCookiesBanner_When_TheUserTheFirstTimeOnWebSite() {
+    public void should_ShowCookiesBanner_When_TheUserTheFirstTimeOnWebSite() {
         pageMain.open();
         assertTrue(cookiesBanner.isCookiesBannerPresent());
     }
 
     @Test
-    public void shouldNot_displayedTheCookiesBanner_WhenUserAcceptIt() {
+    public void should_NotDisplayingTheCookiesBanner_When_TheUserAcceptIt() {
         pageMain.open();
         cookiesBanner.acceptCookiesBanner();
         navigationTabs.clickCompanyButton();
@@ -110,7 +110,7 @@ public class SmokeTest extends TestBase {
     }
 
     @Test
-    public void should_notBeEmptyTheField_WhenUserEnterTheText() {
+    public void should_NotBeEmpty_When_TheUserEnterTheTextToTheNameInput() {
         pageMain.open();
         covidBanner.close();
         contactUsForm.fullNameInput.sendKeys("Igor");
@@ -118,7 +118,7 @@ public class SmokeTest extends TestBase {
     }
 
     @Test
-    public void should_redirectToTheCompanyPage_WhenUserClicksOnButton() {
+    public void should_RedirectToTheCompanyPage_When_TheUserClicksMoreAboutUsButton() {
         pageMain.open();
         covidBanner.close();
         cookiesBanner.acceptCookiesBanner();
@@ -127,7 +127,7 @@ public class SmokeTest extends TestBase {
     }
 
     @Ignore() // TODO: Fix the method
-    public void should_redirectToTheCaseStudiesPage_WhenUserClicksOnButton() {
+    public void should_RedirectToTheCaseStudiesPage_When_TheUserClicksSeeAllCasesButton() {
         pageMain.open();
         covidBanner.close();
         cookiesBanner.acceptCookiesBanner();
@@ -138,19 +138,19 @@ public class SmokeTest extends TestBase {
     }
 
     @Ignore("Unreachable due to ReCaptcha")
-    public void should_sendContactUsForm() {
+    public void should_SendContactUsForm_When_TheUserFillIt() {
         pageContactUs.open();
         pageContactUs.fillAllInputWithValidData();
     }
 
     @Test
-    public void should_show30Articles_WhenUserOnThePage() {
+    public void should_Display30Articles_When_TheUserOnThePage() {
         pageBlog.open();
         assertEquals(30, pageBlog.getNumberOfArticleOnThePage());
     }
 
     @Test//TODO: THE BEGINNING OF THE REFACTORING
-    public void should_showArticleWithTheNewsTag_WhenUserClicksOnTheNewsFilterBtn() {
+    public void should_ShowArticleWithTheNewsTag_When_TheUserClicksTheNewsFilterBtn() {
         pageBlog.open();
         pageBlog.hoverOnTheCategoryBar();
         pageBlog.clickTheFilterButton("News");
@@ -159,7 +159,7 @@ public class SmokeTest extends TestBase {
     }
 
     @Test
-    public void should_showArticleWithTheTrendsTag_WhenUserClicksOnTheTrendsFilterBtn() {
+    public void should_ShowArticleWithTheTrendsTag_When_TheUserClicksTheTrendsFilterBtn() {
         pageBlog.open();
         pageBlog.hoverOnTheCategoryBar();
         pageBlog.clickTheFilterButton("Trends");
@@ -168,7 +168,7 @@ public class SmokeTest extends TestBase {
     }
 
     @Test
-    public void should_showArticleWithTheBusinessTag_WhenUserClicksOnTheBusinessFilterBtn() {
+    public void should_ShowArticleWithTheBusinessTag_When_TheUserClicksTheBusinessFilterBtn() {
         pageBlog.open();
         pageBlog.hoverOnTheCategoryBar();
         pageBlog.clickTheFilterButton("Business");
@@ -177,7 +177,7 @@ public class SmokeTest extends TestBase {
     }
 
     @Test
-    public void should_showArticleWithTheEngineeringTag_WhenUserClicksOnTheEngineeringFilterBtn() {
+    public void should_ShowArticleWithTheEngineeringTag_When_TheUserClicksTheEngineeringFilterBtn() {
         pageBlog.open();
         pageBlog.hoverOnTheCategoryBar();
         pageBlog.clickTheFilterButton("Engineering");
@@ -186,7 +186,7 @@ public class SmokeTest extends TestBase {
     }
 
     @Test
-    public void should_showArticleWithTheDesignTag_WhenUserClicksOnTheDesignFilterBtn() {
+    public void should_ShowArticleWithTheDesignTag_When_TheUserClicksTheDesignFilterBtn() {
         pageBlog.open();
         pageBlog.hoverOnTheCategoryBar();
         pageBlog.clickTheFilterButton("Design");
@@ -195,7 +195,7 @@ public class SmokeTest extends TestBase {
     }
 
     @Test
-    public void should_showArticleWithTheMobileTag_WhenUserClicksOnTheMobileFilterBtn() {
+    public void should_ShowArticleWithTheMobileTag_When_TheUserClicksTheMobileFilterBtn() {
         pageBlog.open();
         pageBlog.hoverOnTheCategoryBar();
         pageBlog.clickTheFilterButton("Mobile");
@@ -204,7 +204,7 @@ public class SmokeTest extends TestBase {
     }
 
     @Test
-    public void should_showArticleWithTheDataScienceTag_WhenUserClicksOnTheDataScienceFilterBtn() {
+    public void should_ShowArticleWithTheDataScienceTag_When_TheUserClicksTheDataScienceFilterBtn() {
         pageBlog.open();
         pageBlog.hoverOnTheCategoryBar();
         pageBlog.clickTheFilterButton("Data Science");
@@ -213,7 +213,7 @@ public class SmokeTest extends TestBase {
     }
 
     @Test
-    public void should_showArticleWithTheBlockchainTag_WhenUserClicksOnTheBlockchainFilterBtn() {
+    public void should_ShowArticleWithTheBlockchainTag_When_TheUserClicksTheBlockchainFilterBtn() {
         pageBlog.open();
         pageBlog.hoverOnTheCategoryBar();
         pageBlog.clickTheFilterButton("Blockchain");
@@ -222,7 +222,7 @@ public class SmokeTest extends TestBase {
     }
 
     @Test
-    public void should_showArticleWithTheARVRTag_WhenUserClicksOnTheARVRFilterBtn() {
+    public void should_ShowArticleWithTheARVRTag_When_TheUserClicksTheARVRFilterBtn() {
         pageBlog.open();
         pageBlog.hoverOnTheCategoryBar();
         pageBlog.clickTheFilterButton("AR/VR");
@@ -231,14 +231,14 @@ public class SmokeTest extends TestBase {
     }
 
     @Test
-    public void should_showSuccessMessage_WhenUserSubscribingTheNewsletter() {
+    public void should_ShowSuccessMessage_When_TheUserSubscribesTheNewsletter() {
         String email = "igorvd@mailinator.com";
         pageBlog.subscribeBlogByEmail(email);
         assertTrue(pageBlog.isSubscriptionSuccessMessageDisplayed());
     }
 
     @Test
-    public void should_verifyThatWelocmeLetterEmailed_WhenUserSubscribeTheNewsLetter() {
+    public void should_VerifyThatWelcomeLetterEmailed_When_theUserSubscribesTheNewsLetter() {
         String email = "jelvixsub@mailinator.com";
         pageBlog.subscribeBlogByEmail(email);
         pageMailinator.goToEmailBox(email);
@@ -246,35 +246,35 @@ public class SmokeTest extends TestBase {
     }
 
     @Test
-    public void should_verifyThatSubscriptionPopupAppears_WhenUserIsOnTheSingleBlogPageForTheFirstTime() {
+    public void should_DisplaySubscriptionPopup_When_TheUserIsOnTheSingleBlogPageForTheFirstTime() {
         pageBlog.openTheSingleBlogPage();
         pageSingleBlog.hoverOverTheLastSectionOfTheArticle();
         assertTrue(pageSingleBlog.isSubscriptionPopupDisplaying());
     }
 
     @Test
-    public void should_verifyThatSocialBlockIsDisplay_WhenUserIsOnTheSingleBlogPage() {
+    public void should_DisplaySocialBlock_When_TheUserIsOnTheSingleBlogPage() {
         pageBlog.openTheSingleBlogPage();
         pageBlog.launchThePageWithAcceptedCookies();
         assertTrue(pageSingleBlog.isSocialBlockDisplaying());
     }
 
     @Test
-    public void should_verifyThatStructureBlockIsDisplaying_WhenUserIsOnTheSingleBlogPage() {
+    public void should_DisplayStructureBlock_When_TheUserIsOnTheSingleBlogPage() {
         pageBlog.openTheSingleBlogPage();
         pageBlog.launchThePageWithAcceptedCookies();
         assertTrue(pageSingleBlog.isStructureBlockDisplaying());
     }
 
     @Test
-    public void should_verifyThatContactUsBottomBlockIsDisplaying_WhenUserIsOnTheSingleBlogPage() {
+    public void should_DisplayContactUsBottomBlock_When_TheUserIsOnTheSingleBlogPage() {
         pageBlog.openTheSingleBlogPage();
         pageBlog.launchThePageWithAcceptedCookies();
         assertTrue(pageSingleBlog.isContactUsBottomBlockDisplaying());
     }
 
     @Test
-    public void should_verifyThatReadNextBlockIsDisplaying_WhenUserIsOnTheSingleBlogPage() {
+    public void should_DisplayReadNextBlock_When_TheUserIsOnTheSingleBlogPage() {
         pageBlog.openTheSingleBlogPage();
         pageBlog.launchThePageWithAcceptedCookies();
         pageSingleBlog.hoverOverTheLastSectionOfTheArticle();
