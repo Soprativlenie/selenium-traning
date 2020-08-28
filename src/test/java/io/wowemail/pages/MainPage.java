@@ -82,7 +82,18 @@ public class MainPage extends Page {
     }
 
     public void clickTheSendButton() {
+        jsExecutor.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        action.moveToElement(sendButton)
+                .perform();
         sendButton.click();
+    }
+
+    public void clickTheOrderNowButton(){
+        orderNowButton.click();
+    }
+
+    public boolean isMainPage(String pageTitle){
+        return pageTitle.startsWith("WOWEmail");
     }
 
     public boolean isSuccessSendingPopupDisplay() {

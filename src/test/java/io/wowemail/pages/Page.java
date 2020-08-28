@@ -1,6 +1,8 @@
 package io.wowemail.pages;/* Created by user on 25.08.20 */
 
 
+import io.wowemail.driverFactory.DriverFactory;
+import io.wowemail.driverFactory.DriverType;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -10,15 +12,14 @@ public class Page {
     protected static WebDriver driver;
     protected static WebDriverWait wait;
     protected static JavascriptExecutor jsExecutor;
-    protected static Actions actions;
+    protected static Actions action;
     protected static String host;
 
     public Page(WebDriver driver) {
-        System.setProperty("webdriver.chrome.driver", "home/user/Downloads/chromedriver");
         this.driver = driver;
         wait = new WebDriverWait(driver, 10);
         jsExecutor = (JavascriptExecutor) driver;
-        actions = new Actions(driver);
+        action = new Actions(driver);
     }
 
     public Page(String host) {
