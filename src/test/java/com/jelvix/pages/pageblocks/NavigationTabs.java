@@ -13,32 +13,39 @@ public class NavigationTabs extends Page {
     }
 
     @FindBy(xpath = "//strong[@class='logo']/a")
-    public WebElement logo;
+    private WebElement logo;
 
     @FindBy(xpath = "//button[@class='search-reset']")
-    public WebElement searchIco;
+    private WebElement searchButton;
 
     @FindBy(xpath = "//ul[@class='nav-menu']//a[text()='Industries']")
-    public WebElement industriesBtn;
+    private WebElement industriesButton;
 
     @FindBy(xpath = "//ul[@class='nav-menu']//a[text()='Services']")
-    public WebElement servicesBtn;
+    private WebElement servicesButton;
 
     @FindBy(xpath = "//ul[@class='nav-menu']//a[text()='Expertise']")
-    public WebElement expertiseBtn;
+    private WebElement expertiseButton;
 
     @FindBy(xpath = "//ul[@class='nav-menu']//a[text()='Technologies']")
-    public WebElement technologiesBtn;
+    private WebElement technologiesButton;
 
     @FindBy(xpath = "//ul[@class='nav-menu']//a[text()='Case Studies']")
-    public WebElement caseStudiesBtn;
+    private WebElement caseStudiesButton;
 
     @FindBy(xpath = "//ul[@class='nav-menu']//a[text()='Company']")
-    public WebElement companyBtn;
+    private WebElement companyButton;
 
     @FindBy(xpath = "//ul[@class='nav-menu']//a[text()='Blog']")
-    public WebElement blogBtn;
+    private WebElement blogButton;
 
     @FindBy(xpath = "//a[@class='btn btn-gray btn-flip']//span[@class='default-state']")
-    public WebElement contactUsBtn;
+    private WebElement contactUsButton;
+
+    public void clickIndustriesButton() {
+        industriesButton.click();
+    }
+    public void clickCompanyButton() {
+        industriesButton.click();
+    }
 }

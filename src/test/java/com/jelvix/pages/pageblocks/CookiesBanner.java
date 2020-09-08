@@ -1,14 +1,12 @@
 package com.jelvix.pages.pageblocks;
 
 import com.jelvix.pages.Page;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOfElementLocated;
 
 public class CookiesBanner extends Page {
     public CookiesBanner(WebDriver driver) {
@@ -30,7 +28,11 @@ public class CookiesBanner extends Page {
     }
 
     public boolean isCookiesBannerPresent() {
-        return cookiesBanner.getSize().height < 0;
+        wait.withMessage("The cookies banner is hide").until(ExpectedConditions.visibilityOf(cookiesBanner));
+        System.out.println(cookiesBanner.getSize().width);
+        System.out.println(cookiesBanner.getSize().height);
+        return cookiesBanner.getSize().height > 0;
+
     }
 
     public void openCookiePolicy() {

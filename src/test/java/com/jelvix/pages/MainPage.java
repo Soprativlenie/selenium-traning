@@ -5,31 +5,28 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Page_Main extends Page {
+public class MainPage extends Page {
 
-    public Page_Main(WebDriver driver) {
+    public MainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
     @FindBy(xpath = "//span[contains(text(),'More About Us')]")
-    public WebElement moreAboutUsBtn;
+    private WebElement moreAboutUsBtn;
 
     @FindBy(xpath = "//div[@class='active-state']")
-    public WebElement bla;
+    private WebElement bla;
 
     @FindBy(xpath = "//div[@class='dots-block']//span[contains(text(),'See All Case Studies')]")
-    public WebElement seeAllCaseStudiesBtn;
+    private WebElement seeAllCaseStudiesBtn;
 
 
-    public Page_Main open() {
-        driver.get("https://jelvix.com/");
+    public MainPage open() {
+        driver.get(Page.getHost() + PagePaths.MAIN.getRoute());
         return this;
     }
 
-    public String getUrl() {
-        return "https://jelvix.com/";
-    }
 
     public void clickSeeAllCaseStudiesBtn() {  // The method doesn't work
 //        actions.moveToElement(seeAllCaseStudiesBtn);
@@ -40,5 +37,9 @@ public class Page_Main extends Page {
 //        actions.moveToElement(seeAllCaseStudiesBtn).perform();
 //        actions.click();
 //        seeAllCaseStudiesBtn.click();
+    }
+
+    public void clickMoreAboutUsButton() {
+        moreAboutUsBtn.click();
     }
 }

@@ -6,40 +6,40 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 
-public class Page_ContactUs extends Page {
+public class ContactUsPage extends Page {
 
-    public Page_ContactUs(WebDriver driver) {
+    public ContactUsPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
     @FindBy(id = "contact-name")
-    public WebElement fullNameInput;
+    private WebElement fullNameInput;
 
     @FindBy(id = "contact-company")
-    public WebElement companyInput;
+    private WebElement companyInput;
 
     @FindBy(id = "contact-email")
-    public WebElement workEmailInput;
+    private WebElement workEmailInput;
 
     @FindBy(xpath = "//span[@class='jcf-select-text']")
-    public WebElement countryDropDown;
+    private WebElement countryDropDown;
 
     @FindBy(id = "contact-comment")
-    public WebElement projectDescriptionTextArea;
+    private WebElement projectDescriptionTextArea;
 
     @FindBy(xpath = "//span[@class='fake-input']")
-    public WebElement privacyCheckbox;
+    private WebElement privacyCheckbox;
 
     @FindBy(xpath = "//span[contains(text(),'Submit Form')]")
-    public WebElement submitFormBtn;
+    private WebElement submitFormBtn;
 
-    public Page_ContactUs open() {
-        driver.get("https://jelvix.com/contact-us");
+    public ContactUsPage open() {
+        driver.get(Page.getHost()+ PagePaths.CONTACT_US.getRoute());
         return this;
     }
 
-    public void fillAllInputWithValidData(){
+    public void fillAllInputWithValidData() {
         fullNameInput.sendKeys("Igor Vdovichenko Test");
         companyInput.sendKeys("Jelvix Test");
         workEmailInput.sendKeys("igor.vdovichenko@jelvix.com");
