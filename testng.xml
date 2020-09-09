@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <parameter name="name"  value="John" />
+    <parameter name="email"  value="test@jelvix.com" />
+    <parameter name="message"  value="message" />
+    <parameter name="name1"  value="Jack" />
+    <parameter name="email1"  value="black@jelvix.com" />
+    <parameter name="message1"  value="Message" />
+
+
+    <test name="test">
+        <classes>
+            <class name="io.wowemail.tests.SmokeTest"/>
+        </classes>
+
+    </test>
+</suite>

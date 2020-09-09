@@ -89,6 +89,7 @@ public class MainPage extends Page {
     }
 
     public void clickTheOrderNowButton(){
+        action.moveToElement(orderNowButton).perform();
         orderNowButton.click();
     }
 

@@ -36,7 +36,7 @@ public class TestBase {
     @BeforeClass
     public void init() {
         driverFactory = new DriverFactory();
-        Driver driver = driverFactory.getDriver(DriverType.FIREFOX);
+        Driver driver = driverFactory.getDriver(DriverType.CHROME);
         webDriver = driver.setupDriver();
         httpSender = new HttpSender();
         environment = new Environment();
