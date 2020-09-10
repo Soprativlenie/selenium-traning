@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.logging.XMLFormatter;
 
 public class ContactPage extends Page {
     public ContactPage(WebDriver driver) {
@@ -25,43 +24,43 @@ public class ContactPage extends Page {
     @FindBy(xpath = "//div[@class='file-upload']")
     private WebElement attachment;
 
-    @FindBy
+    @FindBy(id = "agree-NDA")
     private WebElement privacyCheckbox;
 
-    @FindBy
+    @FindBy(xpath = "//a[@class='text-link cookie-link']")
     private WebElement termsLink;
 
-    @FindBy
-    private WebElement reCaptchaLink;
+    @FindBy(xpath = "//span[@class='captcha-text']//a[1]")
+    private WebElement reCaptchaPrivacyLink;
 
-    @FindBy
+    @FindBy(xpath = "//span[@class='captcha-text']//a[2]")
     private WebElement reCaptchaTermsLink;
 
-    @FindBy
+    @FindBy(css = "span.icon-question")
     private WebElement attachmentToolTip;
 
-    @FindBy
+    @FindBy(xpath = "//button/span[text()='Send']")
     private WebElement sendButton;
 
-    @FindBy
+    @FindBy(xpath = "//div[@class='banner-section compact']//img")
     private WebElement mainImage;
 
-    @FindBy
-    private WebElement nameErrorMessage;
+    @FindBy(xpath = "//input[@id='user-name']/following-sibling::span")
+    private WebElement nameInputErrorMessage;
 
-    @FindBy
-    private WebElement emailErrorMessage;
+    @FindBy(xpath = "//input[@id='user-email']/following-sibling::span")
+    private WebElement emailInputErrorMessage;
 
-    @FindBy
+    @FindBy(xpath = "//textarea[@id='user-comment']/following-sibling::span")
     private WebElement textAreaErrorMessage;
 
-    @FindBy
+    @FindBy(xpath = "//input[@id='multi']/following-sibling::span")
     private WebElement attachmentsErrorMessage;
 
-    @FindBy
+    @FindBy(xpath = "//div[@class='contact-text contact-text-success']")
     private WebElement successSendingMessage;
 
-    @FindBy
+    @FindBy(xpath = "//input[@id='agree-NDA']/following-sibling::span")
     private WebElement privacyCheckBoxError;
 
     public ContactPage open() {
