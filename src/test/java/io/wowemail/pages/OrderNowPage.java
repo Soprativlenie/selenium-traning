@@ -16,6 +16,15 @@ public class OrderNowPage extends Page {
     @FindBy(xpath = "//h1")
     private WebElement title;
 
+    @FindBy(xpath = "//div[@class='banner-section compact']//img")
+    private WebElement mainImage;
+
+    @FindBy(xpath = "//div[@class='flip-card']//strong[text()='ONLY CODING']")
+    private WebElement codingBlock;
+
+    @FindBy(xpath = "//div[@class='flip-card']//strong[text()='DESIGN+CODING']")
+    private WebElement designCodingBlock;
+
     public boolean isTitleOfThePageDisplay() {
         wait.withMessage("Title isn't displaying").until(ExpectedConditions.visibilityOf(title));
         return title.isDisplayed();
