@@ -23,4 +23,6 @@ public class CookiesHandler {
     public Cookie getCookieNoticeAcceptedCookie() {
         return cookieNoticeAcceptedCookie;
     }
+
+
 }

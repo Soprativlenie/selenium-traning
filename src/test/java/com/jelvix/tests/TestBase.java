@@ -1,5 +1,7 @@
 package com.jelvix.tests;
 
+import com.jelvix.environment.Environment;
+import com.jelvix.environment.EnvironmentLinks;
 import com.jelvix.httpclient.RequestSender;
 import com.jelvix.pages.*;
 import com.jelvix.pages.pageblocks.*;
@@ -9,16 +11,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 
 import java.util.concurrent.TimeUnit;
 
 public class TestBase {
-    private final static String PRODUCTION_HOST = "https://jelvix.com/";
-    private final static String STAGING_EXTERNAL_HOST = "http://31.202.123.239:3043/";
-    private final static String STAGING_INTERNAL_HOST = "http://192.168.88.173/";
-
     private static WebDriver driver;
     private static WebDriverWait wait;
     private ChromeOptions options;
@@ -42,8 +40,9 @@ public class TestBase {
     protected Page_Mailinator pageMailinator;
     protected Page_MailinatorEmailBox pageMailinatorEmailBox;
     protected SingleBlogPage pageSingleBlog;
+    private Environment env;
 
-    @BeforeMethod
+    @BeforeClass
     public void start() {
         System.setProperty("webdriver.chrome.driver", "/home/user/Downloads/Drivers/chromedriver");
         options = new ChromeOptions();
@@ -59,7 +58,7 @@ public class TestBase {
         covidBanner = new CovidBanner(driver);
         footer = new Footer(driver);
         navigationTabs = new NavigationTabs(driver);
-        page = new Page(driver, PRODUCTION_HOST);
+        page = new Page(driver, env.getEnvironment(EnvironmentLinks.PRODUCTION));
         pageMain = new MainPage(driver);
         pageCompany = new CompanyPage(driver);
         pageCaseStudies = new CaseStudiesPage(driver);
@@ -76,7 +75,7 @@ public class TestBase {
     }
 
 
-    @AfterMethod
+    @AfterClass
     public void stop() {
         driver.quit();
     }

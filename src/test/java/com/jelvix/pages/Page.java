@@ -1,6 +1,7 @@
 package com.jelvix.pages;
 
 import com.jelvix.cookies.CookiesHandler;
+import com.jelvix.environment.Environment;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,15 +19,6 @@ public class Page {
     private List<String> imagesLinks = new ArrayList<>();
 
 
-    public Page(WebDriver driver) {
-        System.setProperty("webdriver.chrome.driver", "home/user/Downloads/chromedriver");
-        Page.driver = driver;
-        wait = new WebDriverWait(driver, 10);
-        jsExecutor = (JavascriptExecutor) driver;
-        actions = new Actions(driver);
-        cookiesHandler = new CookiesHandler();
-
-    }
 
     public Page(WebDriver driver, String host) {
         System.setProperty("webdriver.chrome.driver", "home/user/Downloads/chromedriver");
@@ -34,7 +26,8 @@ public class Page {
         wait = new WebDriverWait(driver, 10);
         jsExecutor = (JavascriptExecutor) driver;
         actions = new Actions(driver);
-        Page.host = host;
+        cookiesHandler = new CookiesHandler();
+        this.host = host;
 
     }
 
