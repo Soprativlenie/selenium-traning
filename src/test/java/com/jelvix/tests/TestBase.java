@@ -32,16 +32,16 @@ public class TestBase {
     protected Page page;
     protected BlogPage pageBlog;
     protected CaseStudiesPage pageCaseStudies;
-    protected Page_Company pageCompany;
-    protected Page_ContactUs pageContactUs;
-    protected Page_Expertise pageExpertise;
-    protected Page_Industries pageIndustries;
-    protected Page_Main pageMain;
-    protected Page_Services pageServices;
-    protected Page_Technologies pageTechnologies;
+    protected CompanyPage pageCompany;
+    protected ContactUsPage pageContactUs;
+    protected ExpertisePage pageExpertise;
+    protected IndustriesPage pageIndustries;
+    protected MainPage pageMain;
+    protected ServicesPage pageServices;
+    protected TechnologiesPage pageTechnologies;
     protected Page_Mailinator pageMailinator;
     protected Page_MailinatorEmailBox pageMailinatorEmailBox;
-    protected Page_SingleBlog pageSingleBlog;
+    protected SingleBlogPage pageSingleBlog;
 
     @BeforeMethod
     public void start() {
@@ -60,19 +60,19 @@ public class TestBase {
         footer = new Footer(driver);
         navigationTabs = new NavigationTabs(driver);
         page = new Page(driver, PRODUCTION_HOST);
-        pageMain = new Page_Main(driver);
-        pageCompany = new Page_Company(driver);
+        pageMain = new MainPage(driver);
+        pageCompany = new CompanyPage(driver);
         pageCaseStudies = new CaseStudiesPage(driver);
-        pageContactUs = new Page_ContactUs(driver);
+        pageContactUs = new ContactUsPage(driver);
         pageBlog = new BlogPage(driver);
-        pageExpertise = new Page_Expertise(driver);
-        pageIndustries = new Page_Industries(driver);
-        pageServices = new Page_Services(driver);
-        pageTechnologies = new Page_Technologies(driver);
+        pageExpertise = new ExpertisePage(driver);
+        pageIndustries = new IndustriesPage(driver);
+        pageServices = new ServicesPage(driver);
+        pageTechnologies = new TechnologiesPage(driver);
         requestSender = new RequestSender();
         pageMailinator = new Page_Mailinator(driver);
         pageMailinatorEmailBox = new Page_MailinatorEmailBox(driver);
-        pageSingleBlog = new Page_SingleBlog(driver);
+        pageSingleBlog = new SingleBlogPage(driver);
     }
 
 

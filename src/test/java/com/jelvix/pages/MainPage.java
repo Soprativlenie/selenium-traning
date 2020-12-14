@@ -5,9 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Page_Main extends Page {
+public class MainPage extends Page {
 
-    public Page_Main(WebDriver driver) {
+    public MainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
@@ -22,13 +22,13 @@ public class Page_Main extends Page {
     private WebElement seeAllCaseStudiesBtn;
 
 
-    public Page_Main open() {
+    public MainPage open() {
         driver.get(Page.getHost() + PagePaths.MAIN.getLink());
         return this;
     }
 
-
-    public void clickSeeAllCaseStudiesBtn() {  // The method doesn't work
+    //TODO: Method doesn't work
+    public void clickSeeAllCaseStudiesBtn() {
 //        actions.moveToElement(seeAllCaseStudiesBtn);
 //        js.executeScript("window.scrollBy(0,3200)");
 //        seeAllCaseStudiesBtn.click();

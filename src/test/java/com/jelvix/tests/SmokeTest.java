@@ -291,7 +291,7 @@ public class SmokeTest extends TestBase {
         pageSingleBlog.hoverOverTheLastSectionOfTheArticle();
     }
 
-    @Test
+    @Test(enabled = false, description = "test http client ")
     public void shouldCombineIntegrationAndUiTest() throws UnirestException {
         Map<String, Object> formData = new HashMap<>();
         formData.put("action", "blog_option");
