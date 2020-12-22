@@ -30,6 +30,16 @@ public class Page {
         this.host = host;
 
     }
+    public Page(WebDriver driver) {
+        System.setProperty("webdriver.chrome.driver", "home/user/Downloads/chromedriver");
+        Page.driver = driver;
+        wait = new WebDriverWait(driver, 10);
+        jsExecutor = (JavascriptExecutor) driver;
+        actions = new Actions(driver);
+        cookiesHandler = new CookiesHandler();
+        this.host = host;
+
+    }
 
     public String getCurrentUrl() {
         return driver.getCurrentUrl();

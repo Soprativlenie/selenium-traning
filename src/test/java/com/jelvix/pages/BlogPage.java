@@ -90,6 +90,8 @@ public class BlogPage extends Page {
 
     public BlogPage open() {
         driver.get(Page.getHost() + PagePaths.BLOG.getRoute());
+        wait.withMessage("There is no " + firstArticle + " element").until(ExpectedConditions
+                .visibilityOf(firstArticle));
         actions.moveToElement(firstArticle).perform();
         return this;
     }

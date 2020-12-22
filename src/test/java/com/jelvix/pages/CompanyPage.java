@@ -10,11 +10,11 @@ public class CompanyPage extends Page {
     }
 
     public CompanyPage open() {
-        driver.get(Page.getHost() + PagePaths.COMPANY.getLink());
+        driver.get(Page.getHost() + PagePaths.COMPANY.getRoute());
         return this;
     }
 
     public String getUrl() {
-        return Page.getHost() + PagePaths.COMPANY.getLink();
+        return Page.getHost() + PagePaths.COMPANY.getRoute();
     }
 }

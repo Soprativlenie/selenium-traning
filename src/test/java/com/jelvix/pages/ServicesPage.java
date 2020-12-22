@@ -11,7 +11,7 @@ public class ServicesPage extends Page {
     }
 
     public ServicesPage open() {
-        driver.get(Page.getHost() + PagePaths.SERVICES.getLink());
+        driver.get(Page.getHost() + PagePaths.SERVICES.getRoute());
         return this;
     }
 }

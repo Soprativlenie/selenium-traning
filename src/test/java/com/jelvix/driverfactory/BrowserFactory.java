@@ -1,15 +1,15 @@
 package com.jelvix.driverfactory;/* Created by user on 20.08.20 */
 
-public class DriverFactory {
+public class BrowserFactory {
 
-    public Driver getDriver(DriverType type) {
-        Driver driver = null;
+    public Browser getDriver(BrowserType type) {
+        Browser driver = null;
         switch (type) {
             case CHROME:
-                driver = new ChromeDriver();
+                driver = new ChromeBrowser();
                 break;
             case FIREFOX:
-                driver = new FireFoxDriver();
+                driver = new FireFoxBrowser();
                 break;
             default:
                 throw new IllegalArgumentException("Wrong driver type " + type);

@@ -6,6 +6,7 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
@@ -281,8 +282,8 @@ public class SmokeTest extends TestBase {
         assertTrue(pageSingleBlog.isReadNextBlockDisplaying());
     }
 
-
-    @Test(enabled = false, description = "test http client ")
+    // TODO: pass the http logic in a separate class
+    @Test(enabled = false, description = "test Unirest http client ")
     public void shouldCombineIntegrationAndUiTest() throws UnirestException {
         Map<String, Object> formData = new HashMap<>();
         formData.put("action", "blog_option");
@@ -303,5 +304,9 @@ public class SmokeTest extends TestBase {
 //        pageBlog.isAllArticlesSortedByCorrectTag()
 
 
+    }
+    @Test
+    public void test(){
+        driver.navigate().to("https://ddt.jelvix.com/");
     }
 }

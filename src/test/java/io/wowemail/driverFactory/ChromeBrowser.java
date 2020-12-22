@@ -9,8 +9,7 @@ public class ChromeBrowser implements Driver {
 
     @Override
     public WebDriver setupDriver() {
-        System.setProperty("webdriver.chrome.driver", "/home/user/Downloads/Drivers/chromedriver");
-        System.setProperty("webdriver.gecko.driver", "/home/user/Downloads/Drivers/geckodriver");
+        System.setProperty("webdriver.chrome.driver", " C:/38095/Downloads/chromedriver.exe"); ///home/user/Downloads/Drivers/chromedriver
         WebDriver driver = new ChromeDriver();
 //        WebDriverWait wait = new WebDriverWait(driver, 10);
 //        JavascriptExecutor js = (JavascriptExecutor) driver;

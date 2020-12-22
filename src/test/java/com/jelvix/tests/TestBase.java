@@ -1,5 +1,7 @@
 package com.jelvix.tests;
 
+import com.jelvix.driverfactory.ChromeBrowser;
+import com.jelvix.driverfactory.Browser;
 import com.jelvix.environment.Environment;
 import com.jelvix.environment.EnvironmentLinks;
 import com.jelvix.httpclient.RequestSender;
@@ -8,18 +10,14 @@ import com.jelvix.pages.pageblocks.*;
 import com.jelvix.useremailbox.Page_Mailinator;
 import com.jelvix.useremailbox.Page_MailinatorEmailBox;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
-import java.util.concurrent.TimeUnit;
-
 public class TestBase {
-    private static WebDriver driver;
+    private static Browser browser;
+    protected static WebDriver driver;
     private static WebDriverWait wait;
-    private ChromeOptions options;
     protected RequestSender requestSender;
 
     protected ContactUsForm contactUsForm;
@@ -44,14 +42,10 @@ public class TestBase {
 
     @BeforeClass
     public void start() {
-        System.setProperty("webdriver.chrome.driver", "/home/user/Downloads/Drivers/chromedriver");
-        options = new ChromeOptions();
-//        options.addArguments("--headless");
-//        options.addArguments("window-size=1920,1080");
-        driver = new ChromeDriver(options);
+        env = new Environment();
+        browser = new ChromeBrowser();
+        driver = browser.init();
         wait = new WebDriverWait(driver, 10);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
         contactUsForm = new ContactUsForm(driver);
         cookiesBanner = new CookiesBanner(driver);
